@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Clients;
 use App\Models\Products;
 use App\Models\Provinces;
 use App\Models\Sellers;
@@ -26,5 +27,6 @@ class DatabaseSeeder extends Seeder
                 'name' => $value
             ]);
         }
+        Clients::factory(10)->create();
     }
 }
