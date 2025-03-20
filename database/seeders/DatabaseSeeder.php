@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $value
             ]);
         }
-        Clients::factory(10)->create();
-        ClientsProducts::factory(10)->create();
+        Clients::factory(20)->create();
+        ClientsProducts::factory(20)->create();
     }
 }

@@ -19,7 +19,7 @@ class ProductsFactory extends Factory
         return [
             'name' => fake()->word(),
             'reference' => strtoupper(fake()->bothify('??##?')),
-            'stock' => fake()->randomNumber(3, true)
+            'stock' => fake()->randomNumber(3, false)
         ];
     }
 }
