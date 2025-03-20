@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         Sellers::factory(10)->create();
 
         foreach($lista as $value){
-            $province = new Provinces();
-            $province->name = $value;
-            $province->save();
+            Provinces::create([
+                'name' => $value
+            ]);
         }
     }
 }
