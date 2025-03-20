@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         }
         Clients::factory(20)->create();
         ClientsProducts::factory(20)->create();
+        $this->call(UserSeeder::class);
     }
 }
