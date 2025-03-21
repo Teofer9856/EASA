@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Http;
 
 class Provinces extends Model
 {
 
     use HasFactory;
+
+    protected $table = 'provinces';
 
     protected $fillable = ['name'];
 
@@ -25,5 +28,9 @@ class Provinces extends Model
         }
 
         return $lista;
+    }
+
+    public function client(): HasMany{
+        return $this->hasMany(Clients::class);
     }
 }
