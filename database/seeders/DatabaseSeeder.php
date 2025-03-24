@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Clients;
-use App\Models\ClientsProducts;
-use App\Models\Products;
-use App\Models\Provinces;
-use App\Models\Sellers;
-use App\Models\User;
+use App\Models\Client;
+use App\Models\ClientProduct;
+use App\Models\Product;
+use App\Models\Province;
+use App\Models\Seller;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,19 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $classProvinces = new Provinces();
+        $classProvinces = new Province();
         $lista = $classProvinces->apiToArray();
 
-        Products::factory(50)->create();
-        Sellers::factory(10)->create();
+        Product::factory(50)->create();
+        Seller::factory(10)->create();
 
         foreach($lista as $value){
-            Provinces::create([
+            Province::create([
                 'name' => $value
             ]);
         }
-        Clients::factory(20)->create();
-        ClientsProducts::factory(20)->create();
+        Client::factory(40)->create();
+        ClientProduct::factory(20)->create();
         $this->call(UserSeeder::class);
     }
 }

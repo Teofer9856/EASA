@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Sellers extends Model
+class Seller extends Model
 {
     use HasFactory;
 
     protected $table = 'sellers';
 
     public function client():HasMany{
-        return $this->hasMany(Clients::class);
+        return $this->hasMany(Client::class);
     }
 }

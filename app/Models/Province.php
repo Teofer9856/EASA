@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Http;
 
-class Provinces extends Model
+class Province extends Model
 {
 
     use HasFactory;
@@ -31,6 +31,6 @@ class Provinces extends Model
     }
 
     public function client(): HasMany{
-        return $this->hasMany(Clients::class);
+        return $this->hasMany(Client::class);
     }
 }

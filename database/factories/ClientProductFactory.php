@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Clients;
-use App\Models\Products;
+use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ClientsProductsFactory extends Factory
+class ClientProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,12 +18,12 @@ class ClientsProductsFactory extends Factory
      */
     public function definition(): array
     {
-        $size_provinces = count(Clients::get());
-        $size_products = count(Products::get());
+        $size_provinces = count(Client::get());
+        $size_products = count(Product::get());
 
         return [
-            'client_id' => Clients::find(rand(1, $size_provinces)),
-            'product_id' => Products::find(rand(1, $size_products)),
+            'client_id' => Client::find(rand(1, $size_provinces)),
+            'product_id' => Product::find(rand(1, $size_products)),
             'price' => fake()->randomFloat(2, 0, 9999)
         ];
     }

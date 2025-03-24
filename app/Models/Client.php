@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Clients extends Model
+class Client extends Model
 {
     use HasFactory;
 
@@ -18,10 +18,10 @@ class Clients extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     public function province():BelongsTo{
-        return $this->belongsTo(Provinces::class);
+        return $this->belongsTo(Province::class);
     }
 
     public function seller():BelongsTo{
-        return $this->belongsTo(Sellers::class);
+        return $this->belongsTo(Seller::class);
     }
 }

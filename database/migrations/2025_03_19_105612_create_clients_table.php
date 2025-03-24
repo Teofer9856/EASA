@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('zip_code', length: 5);
             $table->foreignId('province_id')->constrained()->onUpdate('cascade')->onUpdate('cascade');
+            /* foreingIdFor(Model::class) */
             $table->foreignId('seller_id')->constrained()->onUpdate('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
