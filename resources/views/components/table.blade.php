@@ -31,7 +31,6 @@
                             <td>
                                 <x-button type="blue">EDIT</x-button>
                                 <x-button type="red">DELET</x-button>
-
                             </td>
                         </tr>
                     @endforeach
