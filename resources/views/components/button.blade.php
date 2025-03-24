@@ -1,7 +1,7 @@
-@props(['type' => 'blue'])
+@props(['color' => 'blue', 'id', 'type' => 'delete'])
 
 @php
-    switch ($type) {
+    switch ($color) {
         case 'blue':
             $class = "px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
             break;
@@ -15,7 +15,13 @@
             $class = "px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
             break;
     }
+
+    if($type != 'delete'){
+        $route = route('clients.edit', $id);
+    } else {
+        $route = route('clients.destroy', $id);
+    }
 @endphp
 
 
-<button {{$attributes->merge(['class' => $class])}}>{{$slot}}</button>
+<span><a href="{{$route}}" {{$attributes->merge(['class' => $class])}}>{{$slot}}</a></span>

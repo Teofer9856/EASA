@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 class GeneralController extends Controller
 {
     public function index(){
-        $clients_list = $this->namesChange(Client::paginate(10));
+        $clients_list = $this->namesChange(Client::paginate(15));
         $entity = Schema::getColumnListing('clients');
         $names_list = array_splice($entity, 0,6);
 

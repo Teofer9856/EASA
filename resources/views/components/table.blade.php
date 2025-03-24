@@ -29,8 +29,8 @@
                                 </td>
                             @endforeach
                             <td>
-                                <x-button type="blue">EDIT</x-button>
-                                <x-button type="red">DELET</x-button>
+                                <x-button :id="$value->id" type="edit" color="blue">EDIT</x-button>
+                                <x-button :id="$value->id" color="red">DELET</x-button>
                             </td>
                         </tr>
                     @endforeach
