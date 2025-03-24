@@ -23,8 +23,8 @@
                                     </td>
                                 @endforeach
                                 <td>
-                                    <x-button :id="$value->id" type="edit" color="blue">EDIT</x-button>
-                                    <x-button :id="$value->id" color="red">DELET</x-button>
+                                    <x-button :client="$value" type="edit" color="blue">EDIT</x-button>
+                                    <x-button :client="$value" color="red">DELET</x-button>
                                 </td>
                             </tr>
                         @endforeach
