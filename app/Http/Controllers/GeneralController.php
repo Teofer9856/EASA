@@ -15,6 +15,15 @@ class GeneralController extends Controller
         return view('clients.index', compact(['clients_list', 'names_list']));
     }
 
+    public function destroy(Client $client){
+        $client->delete();
+
+        return redirect()->route('clients.index');
+    }
+
+
+
+
     public function namesChange($clients_list){
         foreach($clients_list as $object){
             $name_province = $object->province['name'];
