@@ -18,6 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('/clients', GeneralController::class);
+Route::resource('/clients', GeneralController::class)->middleware(['auth', 'verified'])->names('clients');
+
+Route::get('/clients/search', [GeneralController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.search');
+
 
 require __DIR__.'/auth.php';

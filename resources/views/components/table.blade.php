@@ -31,6 +31,8 @@
                     </tr>
                 </tbody>
             </table>
-            {{$list->links()}}
+            @if ($list->count() > 15)
+                {{$list->links()}}
+            @endif
         </div>
     </div>
