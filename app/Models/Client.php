@@ -12,6 +12,8 @@ class Client extends Model
 
     protected $table = 'clients';
 
+    protected $fillable = ['name', 'email', 'zip_code', 'province_id', 'seller_id'];
+
     /**
      * Esconde campos de la tabla
      */
