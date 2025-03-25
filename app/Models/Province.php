@@ -14,6 +14,11 @@ class Province extends Model
 
     protected $table = 'provinces';
 
+    /**
+     * Esconde campos de la tabla
+     */
+    protected $hidden = ['created_at', 'updated_at'];
+
     protected $fillable = ['name'];
 
     public function apiToArray(){

@@ -12,6 +12,11 @@ class Seller extends Model
 
     protected $table = 'sellers';
 
+    /**
+     * Esconde campos de la tabla
+     */
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function client():HasMany{
         return $this->hasMany(Client::class);
     }
