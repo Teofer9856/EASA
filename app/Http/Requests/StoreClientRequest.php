@@ -24,7 +24,7 @@ class StoreClientRequest extends FormRequest
         return [
             'name' => 'required|min: 5|max: 50',
             'email' => 'required|unique:clients,email',
-            'zip_code' => 'required|min:5',
+            'zip_code' => 'required|min:5|max:5',
             'province_id' => 'required',
             'seller_id' => 'required'
         ];
