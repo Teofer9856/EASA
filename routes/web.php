@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('/clients', GeneralController::class)->middleware(['auth', 'verified'])->names('clients');
+Route::resource('/clients', ClientController::class)->middleware(['auth', 'verified'])->names('clients');
 
-Route::get('/clients/search', [GeneralController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.search');
+Route::get('/clients/search', [ClientController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.search');
 
 
 require __DIR__.'/auth.php';
