@@ -31,7 +31,6 @@
                     </tr>
                 </tbody>
             </table>
-            {{-- withQueryString --}}
-                {{-- {{$list->links()}} --}}
+            {{$list->withQueryString()->links() }}
         </div>
     </div>
