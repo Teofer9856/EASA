@@ -31,8 +31,7 @@
                     </tr>
                 </tbody>
             </table>
-            @if ($list->count() > 15)
-                {{$list->links()}}
-            @endif
+            {{-- withQueryString --}}
+                {{-- {{$list->links()}} --}}
         </div>
     </div>

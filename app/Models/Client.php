@@ -24,4 +24,15 @@ class Client extends Model
     public function seller():BelongsTo{
         return $this->belongsTo(Seller::class);
     }
+
+    public static function namesChange($clients_list){
+        foreach($clients_list as $object){
+            $name_province = $object->province['name'];
+            $name_seller = $object->seller['name'];
+
+            $object->province_id = $name_province;
+            $object->seller_id = $name_seller;
+        }
+        return $clients_list;
+    }
 }
