@@ -34,7 +34,7 @@
         @csrf
         @method('delete')
 
-        <button type="submit" {{$attributes->merge(['class' => $class])}}>{{$slot}}</button>
+        <button type="submit" onclick="return confirm('Are you sure to delete this?')" {{$attributes->merge(['class' => $class])}}>{{$slot}}</button>
     </form>
 </span>
 @else

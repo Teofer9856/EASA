@@ -20,7 +20,6 @@ class ClientController extends Controller
 
     public function destroy(Client $client){
         $client->delete();
-
         return redirect()->route('clients.index');
     }
 
@@ -30,13 +29,15 @@ class ClientController extends Controller
             $clients_list = Client::namesChange(Client::where("$request->option", 'like', "%$request->search%")
             ->orWhere("$request->option", "=", Province::where("name", 'like', "%$request->search%")->value("id"))
             ->orWhere("$request->option", "=", Seller::where("name", 'like', "%$request->search%")->value("id"))->paginate(15));
+            $input = $request->search;
         } else {
             $clients_list = Client::namesChange(Client::paginate(15));
+            $input = "";
         }
         $entity = Schema::getColumnListing('clients');
         $names_list = array_splice($entity, 0,6);
 
-        return view('clients.index', compact(['clients_list', 'names_list']));
+        return view('clients.index', compact(['clients_list', 'names_list', 'input']));
     }
 
 }
