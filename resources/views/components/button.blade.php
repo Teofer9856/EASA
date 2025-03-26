@@ -1,4 +1,4 @@
-@props(['color' => 'blue', 'client', 'type' => 'delete'])
+@props(['color' => 'blue', 'client'])
 
 @php
     switch ($color) {
@@ -16,28 +16,8 @@
             break;
     }
 
-    switch ($type) {
-        case 'edit':
-            $route = route('clients.edit', $client);
-            break;
-        case 'delete':
-            $route = route('clients.destroy', $client);
-            break;
-        default:
-            break;
-    }
 @endphp
 
-@if ($type == 'delete')
-<span style="display: inline-block">
-    <form method="POST" action="{{$route}}">
-        @csrf
-        @method('delete')
+<span><a href="{{route('clients.edit', $client)}}" {{$attributes->merge(['class' => $class])}}>{{$slot}}</a></span>
 
-        <button type="submit" onclick="return confirm('Are you sure to delete this?')" {{$attributes->merge(['class' => $class])}}>{{$slot}}</button>
-    </form>
-</span>
-@else
-    <span><a href="{{$route}}" {{$attributes->merge(['class' => $class])}}>{{$slot}}</a></span>
-@endif
 
