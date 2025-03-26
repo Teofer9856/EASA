@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Schema;
 class ClientController extends Controller
 {
     public function index(){
-        $clients_list = Client::namesChange(Client::paginate(15));
+        $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->paginate(15));
         $entity = Schema::getColumnListing('clients');
         $names_list = array_splice($entity, 0,6);
         $input = ['search' => '', 'option' => ''];
@@ -49,7 +49,7 @@ class ClientController extends Controller
 
     public function show(HttpRequest $request){
         if($request->option != 'All'){
-            $clients_list = Client::namesChange(Client::where("$request->option", 'like', "%$request->search%")
+            $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")
             ->orWhere("$request->option", "=", Province::where("name", 'like', "%$request->search%")->value("id"))
             ->orWhere("$request->option", "=", Seller::where("name", 'like', "%$request->search%")->value("id"))->paginate(15));
             $input = ['search' => $request->search, 'option' => $request->option];
