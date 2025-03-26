@@ -4,9 +4,13 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         @foreach ($headers as $value)
+                            @if ($value != 'id')
                                 <th scope="col" class="px-4 py-3 text-center">
                                     {{$value}}
                                 </th>
+                            @else
+                                <th scope="col" class="px-4 py-3 text-center"></th>
+                            @endif
                         @endforeach
                         <th class="px-4 py-3 text-center">
                             Action
@@ -18,9 +22,16 @@
                         @foreach ($list as $value)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                 @foreach ($headers as $name)
-                                    <td class="px-4 py-4 text-center">
-                                        {{($value->$name)}}
-                                    </td>
+                                    @if ($name != 'id')
+                                        <td class="px-4 py-4 text-center">
+                                            {{($value->$name)}}
+                                        </td>
+                                    @else
+                                        <td class="px-4 py-4 text-center">
+                                            <span class="flex w-3 h-3 me-3 bg-blue-600 rounded-full"></span>
+
+                                        </td>
+                                    @endif
                                 @endforeach
                                 <td class="px-4 py-3 text-center">
                                     <x-button :client="$value" color="blue">EDIT</x-button>
