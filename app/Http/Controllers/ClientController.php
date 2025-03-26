@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
 use App\Models\Province;
 use App\Models\Seller;
@@ -40,14 +41,7 @@ class ClientController extends Controller
         return view('clients.edit', compact(['provinces_list', 'sellers','client']));
     }
 
-    public function update(Client $client, HttpRequest $request){
-        $request->validate([
-            'name' => 'required|min: 5|max: 50',
-            'email' => "required|unique:clients,email,{$client->id}",
-            'zip_code' => 'required|min:5|max:5',
-            'province_id' => 'required',
-            'seller_id' => 'required'
-        ]);
+    public function update(Client $client, UpdateClientRequest $request){
         $client->update($request->all());
 
         return redirect()->route('clients.index');
