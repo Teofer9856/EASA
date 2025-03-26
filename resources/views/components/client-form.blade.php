@@ -1,4 +1,4 @@
-<a href="{{route('clients.index')}}" class="font-medium text-blue-500 dark:text-blue-500 hover:underline flex justify-end mr-10">Volver</a>
+<x-backButton :route="route('clients.index')"></x-backButton>
 <form class="max-w-md mx-auto" method="POST" action="{{route('clients.store')}}">
     @csrf
 
