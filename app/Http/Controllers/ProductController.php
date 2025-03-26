@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class ProductController extends Controller
 {
@@ -11,7 +13,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products_list = Product::orderBy('id', 'desc')->paginate(15);
+        $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
+        $input = ['search' => '', 'option' => ''];
+
+        return view('products.index', compact('names_list', 'products_list', 'input'));
     }
 
     /**
@@ -35,6 +41,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
+
         //
     }
 
@@ -60,5 +67,8 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(){
     }
 }

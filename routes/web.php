@@ -24,6 +24,7 @@ Route::resource('/clients', ClientController::class)->middleware(['auth', 'verif
 Route::get('/clients/search', [ClientController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.search');
 
 Route::resource('/products', ProductController::class)->middleware(['auth', 'verified'])->names('products');
+Route::get('/products/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('products.search');
 
 
 

@@ -10,7 +10,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1>Hola</h1>
+                    <x-search :route="route('products.search')" :list="$names_list" :search="$input"></x-search>
+                    <x-table :headers="$names_list" :list="$products_list"></x-table>
                 </div>
             </div>
         </div>
