@@ -24,7 +24,7 @@
                                 @endforeach
                                 <td class="px-4 py-3 text-center">
                                     <x-button :client="$value" color="blue">EDIT</x-button>
-                                    <x-delete-button :object="$value"></x-delete-button>
+                                    <x-delete-button :object="$value">{{$value->name}}</x-delete-button>
                                 </td>
                             </tr>
                         @endforeach
