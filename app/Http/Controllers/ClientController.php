@@ -32,6 +32,26 @@ class ClientController extends Controller
         return redirect()->route('clients.index');
     }
 
+    public function edit(Client $client){
+        $provinces_list = Province::all();
+        $sellers = Seller::all();
+
+        return view('clients.edit', compact(['provinces_list', 'sellers','client']));
+    }
+
+    public function update(Client $client, HttpRequest $request){
+        $request->validate([
+            'name' => 'required|min: 5|max: 50',
+            'email' => "required|unique:clients,email,{$client->id}",
+            'zip_code' => 'required|min:5|max:5',
+            'province_id' => 'required',
+            'seller_id' => 'required'
+        ]);
+        $client->update($request->all());
+
+        return redirect()->route('clients.index');
+    }
+
     public function show(HttpRequest $request){
         if($request->option != 'All'){
             $clients_list = Client::namesChange(Client::where("$request->option", 'like', "%$request->search%")
