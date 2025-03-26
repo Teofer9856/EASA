@@ -54,7 +54,7 @@ class ClientController extends Controller
             ->orWhere("$request->option", "=", Seller::where("name", 'like', "%$request->search%")->value("id"))->paginate(15));
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
-            $clients_list = Client::namesChange(Client::paginate(15));
+            $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->paginate(15));
             $input = ['search' => '', 'option' => ''];
         }
         $entity = Schema::getColumnListing('clients');
