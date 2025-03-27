@@ -33,38 +33,58 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:sellers,name|string|min:1|max:50'
+        ]);
+        Seller::create($request->all());
+
+        return redirect()->route('sellers.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        if($request->option != 'All'){
+            $sellers_list = Seller::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")->paginate(15);
+            $input = ['search' => $request->search, 'option' => $request->option];
+        } else {
+            $sellers_list = Seller::orderBy('id', 'DESC')->paginate(15);
+            $input = ['search' => '', 'option' => ''];
+        }
+        $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
+
+        return view('sellers.index', compact(['sellers_list', 'names_list', 'input']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Seller $seller)
     {
-        //
+        return view('sellers.edit', compact('seller'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Seller $seller)
     {
-        //
+        $request->validate([
+            'name' => "required|unique:sellers,name, {$seller->id}|string|min:1|max:50"
+        ]);
+
+        $seller->update($request->all());
+        return redirect()->route('sellers.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Seller $seller)
     {
-        //
+        $seller->delete();
+        return redirect()->back();
     }
 }
