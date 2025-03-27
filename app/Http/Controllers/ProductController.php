@@ -45,7 +45,7 @@ class ProductController extends Controller
             $products_list = Product::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")->paginate(15);
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
-            $clients_list = Product::orderBy('id', 'DESC')->paginate(15);
+            $products_list = Product::orderBy('id', 'DESC')->paginate(15);
             $input = ['search' => '', 'option' => ''];
         }
         $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
