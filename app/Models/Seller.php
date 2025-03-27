@@ -19,6 +19,13 @@ class Seller extends Model
      */
     protected $hidden = ['created_at', 'updated_at'];
 
+    public static function fileteredNames(array $headers){
+        $filteredColumns = array_filter($headers, function($column) {
+           return !in_array($column, ['created_at', 'updated_at']);
+        });
+        return $filteredColumns;
+    }
+
     public function client():HasMany{
         return $this->hasMany(Client::class);
     }
