@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->decimal('price');
+            $table->unique(['client_id', 'product_id']);
             $table->timestamps();
         });
     }

@@ -12,9 +12,9 @@ class ClientProduct extends Model
 
     protected $table = 'clients_products';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['client_id', 'product_id', 'price'];
 
-    protected $hidden = ['created_at', 'update_at'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function client():HasOne {
         return $this->hasOne(Client::class, 'id', 'client_id');
