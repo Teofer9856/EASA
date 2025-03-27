@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class SellerController extends Controller
 {
@@ -11,7 +13,11 @@ class SellerController extends Controller
      */
     public function index()
     {
-        //
+        $sellers_list = Seller::orderBy('id', 'desc')->paginate(15);
+        $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
+        $input = ['search' => '', 'option' => ''];
+
+        return view('sellers.index', compact('names_list', 'sellers_list', 'input'));
     }
 
     /**
@@ -19,7 +25,7 @@ class SellerController extends Controller
      */
     public function create()
     {
-        //
+        return view('sellers.create');
     }
 
     /**
