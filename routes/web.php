@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,8 +27,8 @@ Route::get('/clients/search', [ClientController::class, 'search'])->middleware([
 Route::resource('/products', ProductController::class)->middleware(['auth', 'verified'])->names('products');
 Route::get('/products/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('products.search');
 
-Route::resource('/sellers', ProductController::class)->middleware(['auth', 'verified'])->names('sellers');
-Route::get('/sellers/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('sellers.search');
+Route::resource('/sellers', SellerController::class)->middleware(['auth', 'verified'])->names('sellers');
+Route::get('/sellers/search', [SellerController::class, 'search'])->middleware(['auth', 'verified'])->name('sellers.search');
 
 
 
