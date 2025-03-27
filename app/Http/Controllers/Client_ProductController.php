@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClientProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class Client_ProductController extends Controller
 {
@@ -11,7 +13,11 @@ class Client_ProductController extends Controller
      */
     public function index()
     {
-        //
+        $cliPro_list = ClientProduct::namesChange(ClientProduct::orderBy('id', 'desc')->paginate(15));
+        $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
+        $input = ['search' => '', 'option' => ''];
+
+        return view('clientsProducts.index', compact('names_list', 'cliPro_list', 'input'));
     }
 
     /**
