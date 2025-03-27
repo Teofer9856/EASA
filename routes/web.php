@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Client_ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\Product_ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -29,6 +31,9 @@ Route::get('/products/search', [ProductController::class, 'search'])->middleware
 
 Route::resource('/sellers', SellerController::class)->middleware(['auth', 'verified'])->names('sellers');
 Route::get('/sellers/search', [SellerController::class, 'search'])->middleware(['auth', 'verified'])->name('sellers.search');
+
+Route::resource('/clients_products', Client_ProductController::class)->middleware(['auth', 'verified'])->names('clients_products');
+Route::get('/clients_products/search', [Client_ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('clients_products.search');
 
 
 
