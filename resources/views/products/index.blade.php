@@ -11,7 +11,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <x-search :route="route('products.search')" :list="$names_list" :search="$input"></x-search>
-                    <x-table :headers="$names_list" :list="$products_list"></x-table>
+                    <x-table :headers="$names_list" :route_delete="'products.destroy'" :route_edit="'products.edit'" :list="$products_list"></x-table>
                 </div>
             </div>
         </div>
