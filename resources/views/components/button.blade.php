@@ -1,4 +1,4 @@
-@props(['color' => 'blue', 'client'])
+@props(['color' => 'blue', 'client', 'route'])
 
 @php
     switch ($color) {
@@ -18,6 +18,6 @@
 
 @endphp
 
-<span><a href="{{route('clients.edit', $client)}}" {{$attributes->merge(['class' => $class])}}>{{$slot}}</a></span>
+<span><a href="{{route($route, $client)}}" {{$attributes->merge(['class' => $class])}}>{{$slot}}</a></span>
 
 
