@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\ClientProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
@@ -39,9 +41,24 @@ class Client_ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        /* pluck returns an array with the required value */
+        $ids_client = Client::where('name', 'like', "%$request->search%")->pluck('id');
+        $ids_products = Product::where('name', 'like', "%$request->search%")->pluck('id');
+
+        if($request->option != 'All'){
+            $cliPro_list = ClientProduct::namesChange(ClientProduct::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")
+            ->orWhereIn("$request->option", $ids_client)
+            ->orWhereIn("$request->option", $ids_products)->paginate(15));
+            $input = ['search' => $request->search, 'option' => $request->option];
+        } else {
+            $cliPro_list = ClientProduct::namesChange(ClientProduct::orderBy('id', 'DESC')->paginate(15));
+            $input = ['search' => '', 'option' => ''];
+        }
+        $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
+
+        return view('clientsProducts.index', compact(['cliPro_list', 'names_list', 'input']));
     }
 
     /**

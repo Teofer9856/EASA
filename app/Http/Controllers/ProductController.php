@@ -54,7 +54,6 @@ class ProductController extends Controller
         $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
 
         return view('products.index', compact(['products_list', 'names_list', 'input']));
-
     }
 
     /**
