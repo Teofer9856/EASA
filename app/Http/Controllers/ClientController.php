@@ -48,10 +48,13 @@ class ClientController extends Controller
     }
 
     public function show(HttpRequest $request){
+        /* pluck returns an array with the required value */
+        $ids_sellers = Seller::where('name', 'like', "%$request->search%")->pluck('id');
+
         if($request->option != 'All'){
             $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")
             ->orWhere("$request->option", "=", Province::where("name", 'like', "%$request->search%")->value("id"))
-            ->orWhere("$request->option", "=", Seller::where("name", 'like', "%$request->search%")->value("id"))->paginate(15));
+            ->orWhereIn("$request->option", $ids_sellers)->paginate(15));
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
             $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->paginate(15));
