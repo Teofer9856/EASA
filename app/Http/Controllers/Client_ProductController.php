@@ -82,6 +82,8 @@ class Client_ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ClientProduct::find($id)->delete();
+
+        return redirect()->back();
     }
 }
