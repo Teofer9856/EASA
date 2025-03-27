@@ -12,6 +12,8 @@ class Seller extends Model
 
     protected $table = 'sellers';
 
+    protected $fillable = ['name'];
+
     /**
      * Esconde campos de la tabla
      */

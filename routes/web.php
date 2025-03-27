@@ -26,6 +26,9 @@ Route::get('/clients/search', [ClientController::class, 'search'])->middleware([
 Route::resource('/products', ProductController::class)->middleware(['auth', 'verified'])->names('products');
 Route::get('/products/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('products.search');
 
+Route::resource('/sellers', ProductController::class)->middleware(['auth', 'verified'])->names('sellers');
+Route::get('/sellers/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('sellers.search');
+
 
 
 require __DIR__.'/auth.php';
