@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientProductRequest;
 use App\Models\Client;
 use App\Models\ClientProduct;
 use App\Models\Product;
@@ -27,15 +28,20 @@ class Client_ProductController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::orderBy('name', 'asc')->get();
+        $products = Product::orderBy('name', 'asc')->get();
+
+        return view('clientsProducts.create', compact('clients', 'products'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClientProductRequest $request)
     {
-        //
+        ClientProduct::create($request->all());
+
+        return redirect()->route('clients.products.index');
     }
 
     /**
