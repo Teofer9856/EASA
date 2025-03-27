@@ -39,10 +39,19 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
+        if($request->option != 'All'){
+            $products_list = Product::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")->paginate(15);
+            $input = ['search' => $request->search, 'option' => $request->option];
+        } else {
+            $clients_list = Product::orderBy('id', 'DESC')->paginate(15);
+            $input = ['search' => '', 'option' => ''];
+        }
+        $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
 
-        //
+        return view('products.index', compact(['products_list', 'names_list', 'input']));
+
     }
 
     /**
