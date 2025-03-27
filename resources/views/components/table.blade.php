@@ -1,4 +1,4 @@
-@props(['align' => 1])
+@props(['align' => 1, 'route'])
 @php
     switch ($align) {
         case 1:
@@ -49,7 +49,7 @@
                             @endforeach
                             <td class="px-4 py-3 text-center">
                                 <x-button :client="$value" color="blue">EDIT</x-button>
-                                <x-delete-button :object="$value">{{$value->name}}</x-delete-button>
+                                <x-delete-button :route="$route" :object="$value">{{$value->name}}</x-delete-button>
                             </td>
                         </tr>
                     @endforeach

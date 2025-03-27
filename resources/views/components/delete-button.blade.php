@@ -1,7 +1,7 @@
-@props(['object'])
+@props(['object', 'route'])
 
 @php
-    $route = route('clients.destroy', $object);
+    $route = route($route, $object);
 @endphp
 
 <span style="display: inline-block">
