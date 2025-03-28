@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientProductRequest;
+use App\Http\Requests\ClientProductUpdateRequest;
 use App\Models\Client;
 use App\Models\ClientProduct;
 use App\Models\Product;
@@ -72,7 +73,10 @@ class Client_ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cli_pro = ClientProduct::find($id);
+        $clients = Client::all();
+        $products = Product::all();
+        return view('clientsProducts.edit', compact('cli_pro', 'clients', 'products'));
     }
 
     /**
@@ -80,7 +84,10 @@ class Client_ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client_product = ClientProduct::find($id);
+        $client_product->update($request->all());
+
+        return redirect()->route('clients.products.index');
     }
 
     /**
