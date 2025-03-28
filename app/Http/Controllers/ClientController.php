@@ -29,7 +29,7 @@ class ClientController extends Controller
     }
 
     public function store(StoreClientRequest $request){
-        $client = Client::create($request->all());
+        $client = Client::create($request->validated());
 
         return redirect()->route('clients.index');
     }
