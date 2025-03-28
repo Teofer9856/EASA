@@ -22,17 +22,32 @@ class Province extends Model
     protected $fillable = ['name'];
 
     public function apiToArray(){
-        $response = json_decode(Http::get('https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLE/70'));
+        $response = Http::get('https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLE/20');
 
-        $lista = [];
+        if (!$response->ok()) {
+            return [];
+        }
 
-        foreach($response as $element){
-            if(intval($element->Codigo) > 0 && $element->Codigo != ""){
-                $lista[] = str_replace(" - ", " ",implode(" ", array_reverse(explode(", ", $element->Nombre))));
+        $data = $response->json();
+        $provincesList = [];
+
+        foreach ($data as $item) {
+            if (intval($item['Id']) > 0 && intval($item['Id']) < 100) {
+                $province = $item['Nombre'];
+
+                if (str_contains($province, ', ')) {
+                    $province = implode(' ', array_reverse(explode(', ', $province)));
+                }
+
+                if (str_contains($province, '/')) {
+                    $province = explode('/', $province)[1];
+                }
+
+                array_push($provincesList, $province);
             }
         }
 
-        return $lista;
+        return $provincesList;
     }
 
     public function client(): HasMany{
