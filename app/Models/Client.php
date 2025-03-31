@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Kyslik\ColumnSortable\Sortable;
 
 class Client extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $table = 'clients';
 
     protected $fillable = ['name', 'email', 'zip_code', 'province_id', 'seller_id'];
+
+    public $sortable = ['name', 'email', 'zip_code', 'province_id', 'seller_id'];
 
     /**
      * Esconde campos de la tabla

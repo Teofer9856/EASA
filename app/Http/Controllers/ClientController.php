@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Schema;
 class ClientController extends Controller
 {
     public function index(){
-        $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->paginate(15));
-        $entity = Schema::getColumnListing('clients');
-        $names_list = array_splice($entity, 0,6);
+        $clients_list = Client::namesChange(Client::sortable('name')->paginate(15));
+        $names_list = $clients_list[0]->sortable;
         $input = ['search' => '', 'option' => ''];
 
         $success = session('success');
