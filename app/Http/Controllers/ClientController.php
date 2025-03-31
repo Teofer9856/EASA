@@ -52,12 +52,12 @@ class ClientController extends Controller
         $ids_sellers = Seller::where('name', 'like', "%$request->search%")->pluck('id');
 
         if($request->option != 'All'){
-            $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")
+            $clients_list = Client::namesChange(Client::sortable()->where("$request->option", 'like', "%$request->search%")
             ->orWhere("$request->option", "=", Province::where("name", 'like', "%$request->search%")->value("id"))
             ->orWhereIn("$request->option", $ids_sellers)->paginate(15));
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
-            $clients_list = Client::namesChange(Client::orderBy('id', 'DESC')->paginate(15));
+            $clients_list = Client::namesChange(Client::sortable()->paginate(15));
             $input = ['search' => '', 'option' => ''];
         }
         $entity = Schema::getColumnListing('clients');
