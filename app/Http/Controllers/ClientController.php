@@ -18,7 +18,8 @@ class ClientController extends Controller
         $names_list = array_splice($entity, 0,6);
         $input = ['search' => '', 'option' => ''];
 
-        return view('clients.index', compact(['clients_list', 'names_list', 'input']));
+        $success = session('success');
+        return view('clients.index', compact(['clients_list', 'names_list', 'input', 'success']));
     }
 
     public function create(){
@@ -44,7 +45,7 @@ class ClientController extends Controller
     public function update(Client $client, UpdateClientRequest $request){
         $client->update($request->all());
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Client Updated!');
     }
 
     public function show(HttpRequest $request){
