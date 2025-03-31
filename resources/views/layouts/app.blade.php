@@ -15,6 +15,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://kit.fontawesome.com/1f30b709a4.js" crossorigin="anonymous"></script>
         @stack('links')
     </head>
     <body class="font-sans antialiased">
