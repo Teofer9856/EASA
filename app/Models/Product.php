@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = ['name', 'reference', 'stock'];
+
+    public $sortable = ['name', 'reference', 'stock'];
 
     protected function reference(): Attribute{
         return Attribute::make(

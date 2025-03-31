@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products_list = Product::orderBy('id', 'desc')->paginate(15);
+        $products_list = Product::sortable('name')->paginate(15);
         $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
         $input = ['search' => '', 'option' => ''];
 
@@ -45,10 +45,10 @@ class ProductController extends Controller
     public function show(Request $request)
     {
         if($request->option != 'All'){
-            $products_list = Product::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")->paginate(15);
+            $products_list = Product::sortable()->where("$request->option", 'like', "%$request->search%")->paginate(15);
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
-            $products_list = Product::orderBy('id', 'DESC')->paginate(15);
+            $products_list = Product::sortable()->paginate(15);
             $input = ['search' => '', 'option' => ''];
         }
         $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
