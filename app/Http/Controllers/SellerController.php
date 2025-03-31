@@ -13,7 +13,7 @@ class SellerController extends Controller
      */
     public function index()
     {
-        $sellers_list = Seller::orderBy('id', 'desc')->paginate(15);
+        $sellers_list = Seller::sortable('name')->paginate(15);
         $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
         $input = ['search' => '', 'option' => ''];
 
@@ -47,10 +47,10 @@ class SellerController extends Controller
     public function show(Request $request)
     {
         if($request->option != 'All'){
-            $sellers_list = Seller::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")->paginate(15);
+            $sellers_list = Seller::sortable('name')->where("$request->option", 'like', "%$request->search%")->paginate(15);
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
-            $sellers_list = Seller::orderBy('id', 'DESC')->paginate(15);
+            $sellers_list = Seller::sortable('name')->paginate(15);
             $input = ['search' => '', 'option' => ''];
         }
         $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
