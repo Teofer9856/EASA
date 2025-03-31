@@ -76,7 +76,7 @@ class SellerController extends Controller
         ]);
 
         $seller->update($request->all());
-        return redirect()->route('sellers.index')->with('status', "Update seller: $seller->name! se ha creado correctamente");
+        return redirect()->route('sellers.index')->with('status', "Update seller: $seller->name! se ha actualizador correctamente");
     }
 
     /**
@@ -85,6 +85,6 @@ class SellerController extends Controller
     public function destroy(Seller $seller)
     {
         $seller->delete();
-        return redirect()->back()->with('status', "Delete client: $seller->name! se ha creado correctamente");
+        return redirect()->back()->with('status', "Delete client: $seller->name! se ha eliminado exitosamente");
     }
 }
