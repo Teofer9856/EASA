@@ -46,29 +46,6 @@ class Client_ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
-    {
-        /* pluck returns an array with the required value */
-        $ids_client = Client::where('name', 'like', "%$request->search%")->pluck('id');
-        $ids_products = Product::where('name', 'like', "%$request->search%")->pluck('id');
-
-        if($request->option != 'All'){
-            $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->where("$request->option", 'like', "%$request->search%")
-            ->orWhereIn("$request->option", $ids_client)
-            ->orWhereIn("$request->option", $ids_products)->paginate(15));
-            $input = ['search' => $request->search, 'option' => $request->option];
-        } else {
-            $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->paginate(15));
-            $input = ['search' => '', 'option' => ''];
-        }
-        $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
-
-        return view('clientsProducts.index', compact(['cliPro_list', 'names_list', 'input']));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -98,5 +75,24 @@ class Client_ProductController extends Controller
         $clientPro = ClientProduct::find($id)->delete();
 
         return redirect()->back()->with('status', "Delete (client-product): $clientPro->id! se ha eliminado exitosamente");
+    }
+
+    public function search(Request $request){
+        /* pluck returns an array with the required value */
+        $ids_client = Client::where('name', 'like', "%$request->search%")->pluck('id');
+        $ids_products = Product::where('name', 'like', "%$request->search%")->pluck('id');
+
+        if($request->option != 'All'){
+            $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->where("$request->option", 'like', "%$request->search%")
+            ->orWhereIn("$request->option", $ids_client)
+            ->orWhereIn("$request->option", $ids_products)->paginate(15));
+            $input = ['search' => $request->search, 'option' => $request->option];
+        } else {
+            $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->paginate(15));
+            $input = ['search' => '', 'option' => ''];
+        }
+        $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
+
+        return view('clientsProducts.index', compact(['cliPro_list', 'names_list', 'input']));
     }
 }
