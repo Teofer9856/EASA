@@ -42,23 +42,6 @@ class SellerController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
-    {
-        if($request->option != 'All'){
-            $sellers_list = Seller::sortable('name')->where("$request->option", 'like', "%$request->search%")->paginate(15);
-            $input = ['search' => $request->search, 'option' => $request->option];
-        } else {
-            $sellers_list = Seller::sortable('name')->paginate(15);
-            $input = ['search' => '', 'option' => ''];
-        }
-        $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
-
-        return view('sellers.index', compact(['sellers_list', 'names_list', 'input']));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Seller $seller)
@@ -86,5 +69,18 @@ class SellerController extends Controller
     {
         $seller->delete();
         return redirect()->back()->with('status', "Delete client: $seller->name! se ha eliminado exitosamente");
+    }
+
+    public function search(Request $request){
+        if($request->option != 'All'){
+            $sellers_list = Seller::sortable('name')->where("$request->option", 'like', "%$request->search%")->paginate(15);
+            $input = ['search' => $request->search, 'option' => $request->option];
+        } else {
+            $sellers_list = Seller::sortable('name')->paginate(15);
+            $input = ['search' => '', 'option' => ''];
+        }
+        $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
+
+        return view('sellers.index', compact(['sellers_list', 'names_list', 'input']));
     }
 }
