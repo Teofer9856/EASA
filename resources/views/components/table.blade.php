@@ -20,7 +20,16 @@
                     @foreach ($headers as $value)
                         @if ($value != 'id')
                             <th scope="col" {{$attributes->merge(['class' => 'px-4 py-3' . $class])}}>
-                                @sortablelink($value)
+                                @switch($value)
+                                    @case($value == "province_id")
+                                        @sortablelink('province')
+                                        @break
+                                    @case($value == "seller_id")
+                                        @sortablelink('seller')
+                                        @break
+                                    @default
+                                        @sortablelink($value)
+                                @endswitch
                             </th>
                         @else
                             <th scope="col" class="px-4 py-3 text-center"></th>
