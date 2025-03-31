@@ -38,7 +38,7 @@ class SellerController extends Controller
         ]);
         Seller::create($request->all());
 
-        return redirect()->route('sellers.index');
+        return redirect()->route('sellers.index')->with('status', "Create seller: $request->name! se ha creado correctamente");;
     }
 
     /**
@@ -76,7 +76,7 @@ class SellerController extends Controller
         ]);
 
         $seller->update($request->all());
-        return redirect()->route('sellers.index');
+        return redirect()->route('sellers.index')->with('status', "Update seller: $seller->name! se ha creado correctamente");
     }
 
     /**
@@ -85,6 +85,6 @@ class SellerController extends Controller
     public function destroy(Seller $seller)
     {
         $seller->delete();
-        return redirect()->back();
+        return redirect()->back()->with('status', "Delete client: $seller->name! se ha creado correctamente");
     }
 }
