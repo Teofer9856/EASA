@@ -27,6 +27,12 @@
                                     @case($value == "seller_id")
                                         @sortablelink('seller')
                                         @break
+                                    @case($value == "client_id")
+                                        @sortablelink('client')
+                                        @break
+                                    @case($value == "product_id")
+                                        @sortablelink('product')
+                                        @break
                                     @default
                                         @sortablelink($value)
                                 @endswitch

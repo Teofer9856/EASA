@@ -17,7 +17,7 @@ class Client_ProductController extends Controller
      */
     public function index()
     {
-        $cliPro_list = ClientProduct::namesChange(ClientProduct::orderBy('id', 'desc')->paginate(15));
+        $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->paginate(15));
         $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
         $input = ['search' => '', 'option' => ''];
 
@@ -29,8 +29,8 @@ class Client_ProductController extends Controller
      */
     public function create()
     {
-        $clients = Client::orderBy('name', 'asc')->get();
-        $products = Product::orderBy('name', 'asc')->get();
+        $clients = Client::sortable('client_id')->get();
+        $products = Product::sortable('client_id')->get();
 
         return view('clientsProducts.create', compact('clients', 'products'));
     }
@@ -55,12 +55,12 @@ class Client_ProductController extends Controller
         $ids_products = Product::where('name', 'like', "%$request->search%")->pluck('id');
 
         if($request->option != 'All'){
-            $cliPro_list = ClientProduct::namesChange(ClientProduct::orderBy('id', 'DESC')->where("$request->option", 'like', "%$request->search%")
+            $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->where("$request->option", 'like', "%$request->search%")
             ->orWhereIn("$request->option", $ids_client)
             ->orWhereIn("$request->option", $ids_products)->paginate(15));
             $input = ['search' => $request->search, 'option' => $request->option];
         } else {
-            $cliPro_list = ClientProduct::namesChange(ClientProduct::orderBy('id', 'DESC')->paginate(15));
+            $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->paginate(15));
             $input = ['search' => '', 'option' => ''];
         }
         $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
