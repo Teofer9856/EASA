@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ClientsExport;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
@@ -9,6 +10,7 @@ use App\Models\Province;
 use App\Models\Seller;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClientController extends Controller
 {
@@ -48,7 +50,13 @@ class ClientController extends Controller
         return redirect()->route('clients.index')->with('status', "Update client: $client->name! se ha actualizado correctamente");
     }
 
-    public function show(HttpRequest $request){
+    public function destroy(Client $client){
+        $client->delete();
+
+        return redirect()->back()->with('status', "Delete client: $client->name! se ha borrado exitosamente");
+    }
+
+    public function search(HttpRequest $request){
         /* pluck returns an array with the required value */
         $ids_sellers = Seller::where('name', 'like', "%$request->search%")->pluck('id');
         $ids_province = Province::where('name', 'like', "%$request->search%")->pluck('id');
@@ -68,10 +76,7 @@ class ClientController extends Controller
         return view('clients.index', compact(['clients_list', 'names_list', 'input']));
     }
 
-
-    public function destroy(Client $client){
-        $client->delete();
-
-        return redirect()->back()->with('status', "Delete client: $client->name! se ha borrado exitosamente");
+    public function export(){
+        return Excel::download(new ClientsExport, "clients.xlsx");
     }
 }
