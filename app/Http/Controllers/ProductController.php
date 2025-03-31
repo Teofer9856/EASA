@@ -40,23 +40,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
-    {
-        if($request->option != 'All'){
-            $products_list = Product::sortable('name')->where("$request->option", 'like', "%$request->search%")->paginate(15);
-            $input = ['search' => $request->search, 'option' => $request->option];
-        } else {
-            $products_list = Product::sortable('name')->paginate(15);
-            $input = ['search' => '', 'option' => ''];
-        }
-        $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
-
-        return view('products.index', compact(['products_list', 'names_list', 'input']));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
@@ -72,6 +55,19 @@ class ProductController extends Controller
         $product->update($request->all());
 
         return redirect()->route('products.index')->with('status', "Update product: $product->name! se ha actualizado correctamente");
+    }
+
+    public function search(Request $request){
+        if($request->option != 'All'){
+            $products_list = Product::sortable('name')->where("$request->option", 'like', "%$request->search%")->paginate(15);
+            $input = ['search' => $request->search, 'option' => $request->option];
+        } else {
+            $products_list = Product::sortable('name')->paginate(15);
+            $input = ['search' => '', 'option' => ''];
+        }
+        $names_list = Product::fileteredNames(Schema::getColumnListing('products'));
+
+        return view('products.index', compact(['products_list', 'names_list', 'input']));
     }
 
     /**
