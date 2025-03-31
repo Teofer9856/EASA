@@ -14,7 +14,8 @@ class ClientController extends Controller
 {
     public function index(){
         $clients_list = Client::namesChange(Client::sortable('name')->paginate(15));
-        $names_list = $clients_list[0]->sortable;
+        $entity = Schema::getColumnListing('clients');
+        $names_list = array_splice($entity, 0,6);
         $input = ['search' => '', 'option' => ''];
 
         $success = session('success');
