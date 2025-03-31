@@ -40,9 +40,9 @@ class Client_ProductController extends Controller
      */
     public function store(ClientProductRequest $request)
     {
-        ClientProduct::create($request->all());
+        $cliPro = ClientProduct::create($request->all());
 
-        return redirect()->route('clients.products.index');
+        return redirect()->route('clients.products.index')->with('status', "Create (client-product): $cliPro->id! se ha actualizado correctamente");
     }
 
     /**
@@ -87,7 +87,7 @@ class Client_ProductController extends Controller
         $client_product = ClientProduct::find($id);
         $client_product->update($request->all());
 
-        return redirect()->route('clients.products.index');
+        return redirect()->route('clients.products.index')->with('status', "Update (client-product): $client_product->id! se ha actualizado correctamente");
     }
 
     /**
@@ -95,8 +95,8 @@ class Client_ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        ClientProduct::find($id)->delete();
+        $clientPro = ClientProduct::find($id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('status', "Delete (client-product): $clientPro->id! se ha eliminado exitosamente");
     }
 }
