@@ -69,6 +69,7 @@ class ClientController extends Controller
 
     public function destroy(Client $client){
         $client->delete();
-        return redirect()->back();
+
+        return redirect()->back()->with('success', "Client: $client->name! se ha borrado exitosamente");
     }
 }
