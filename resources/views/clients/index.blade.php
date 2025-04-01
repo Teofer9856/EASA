@@ -1,5 +1,8 @@
 <x-app-layout>
     <x-alert>{{session('status')}}</x-alert>
+    @if ($errors->any())
+        <x-alert-list></x-alert-list>
+    @endif
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight content-center">
             {{ __('Clientes') }}
