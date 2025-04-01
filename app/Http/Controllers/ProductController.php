@@ -89,7 +89,7 @@ class ProductController extends Controller
     public function import(Request $request){
         Excel::import(new ProductsImport, $request->file('uploadFile'));
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('status', 'Success All good!');
     }
 
 }

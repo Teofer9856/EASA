@@ -84,6 +84,6 @@ class ClientController extends Controller
     public function import(HttpRequest $request){
         Excel::import(new ClientsImport, $request->file('uploadFile'));
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('status', 'Success All good!');
     }
 }

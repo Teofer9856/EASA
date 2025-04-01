@@ -94,6 +94,6 @@ class SellerController extends Controller
     public function import(Request $request){
         Excel::import(new SellersImport, $request->file('uploadFile'));
 
-        return redirect()->route('sellers.index');
+        return redirect()->route('sellers.index')->with('status', 'Success All good!');
     }
 }

@@ -106,6 +106,6 @@ class Client_ProductController extends Controller
     public function import(Request $request){
         Excel::import(new ClientsProductsImport, $request->file('uploadFile'));
 
-        return redirect()->route('clients.products.index');
+        return redirect()->route('clients.products.index')->with('status', 'Success All good!');
     }
 }
