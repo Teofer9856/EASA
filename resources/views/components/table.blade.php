@@ -64,7 +64,7 @@
                             @endforeach
                             <td class="px-4 py-3 text-center">
                                 <x-button :client="$value" :route="$route_edit" color="blue">EDIT</x-button>
-                                <x-delete-button :route="$route_delete" :object="$value">{{$value->name}}</x-delete-button>
+                                <x-delete-button :route="$route_delete" :object="$value">{{$value->name ?? $value->id}}</x-delete-button>
                             </td>
                         </tr>
                     @endforeach
