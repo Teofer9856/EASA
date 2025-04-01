@@ -5,6 +5,7 @@
             {{ __('Clientes') }}
         </h2>
         <div class="flex">
+            <x-import-icon :route="route('clients.import')"></x-import-icon>
             <x-export-icon :route="route('clients.export')"></x-export-icon>
             <x-button-icon :route="route('clients.create')"></x-button-icon>
         </div>
