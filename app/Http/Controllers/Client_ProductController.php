@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ClientsProductsExport;
 use App\Http\Requests\ClientProductRequest;
 use App\Http\Requests\ClientProductUpdateRequest;
+use App\Imports\ClientsProductsImport;
 use App\Models\Client;
 use App\Models\ClientProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Client_ProductController extends Controller
 {
@@ -94,5 +97,15 @@ class Client_ProductController extends Controller
         $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
 
         return view('clientsProducts.index', compact(['cliPro_list', 'names_list', 'input']));
+    }
+
+    public function export(){
+        return Excel::download(new ClientsProductsExport, 'ClientsProducts.xlsx');
+    }
+
+    public function import(Request $request){
+        Excel::import(new ClientsProductsImport, $request->file('uploadFile'));
+
+        return redirect()->route('clients.products.index');
     }
 }
