@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/clients/export/', [ClientController::class, 'export'])->middleware(['auth', 'verified']);
+Route::get('/clients/export/', [ClientController::class, 'export'])->middleware(['auth', 'verified'])->name('clients.export');
 Route::get('/clients/search', [ClientController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.search');
 Route::resource('/clients', ClientController::class)->middleware(['auth', 'verified'])->names('clients');
 
