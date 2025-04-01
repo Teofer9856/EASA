@@ -23,9 +23,9 @@ class SellersExport implements FromCollection, WithHeadings, WithMapping
         ];
     }
 
-    public function map($products): array{
+    public function map($sellers): array{
         return [
-            $products->name
+            $sellers->name
         ];
     }
 }
