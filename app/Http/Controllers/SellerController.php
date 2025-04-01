@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SellersExport;
+use App\Imports\SellersImport;
 use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SellerController extends Controller
 {
@@ -82,5 +85,15 @@ class SellerController extends Controller
         $names_list = Seller::fileteredNames(Schema::getColumnListing('sellers'));
 
         return view('sellers.index', compact(['sellers_list', 'names_list', 'input']));
+    }
+
+    public function export(){
+        return Excel::download(new SellersExport, 'sellers.xlsx');
+    }
+
+    public function import(Request $request){
+        Excel::import(new SellersImport, $request->file('uploadFile'));
+
+        return redirect()->route('sellers.index');
     }
 }

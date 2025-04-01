@@ -1,10 +1,17 @@
 <x-app-layout>
     <x-alert>{{session('status')}}</x-alert>
+    @if ($errors->any())
+        <x-alert-list></x-alert-list>
+    @endif
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight content-center">
             {{ __('Vendedores') }}
         </h2>
-        <x-button-icon :route="route('sellers.create')"></x-button-icon>
+        <div class="flex">
+            <x-import-icon :route="route('sellers.import')"></x-import-icon>
+            <x-export-icon :route="route('sellers.export')"></x-export-icon>
+            <x-button-icon :route="route('sellers.create')"></x-button-icon>
+        </div>
     </x-slot>
 
     <div class="py-12">
