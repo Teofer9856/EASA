@@ -20,7 +20,7 @@ class ClientsExport implements FromCollection, WithHeadings, WithMapping
     public function headings():array{
         return [
             'Nª', 'Nombre', 'Email',
-            'Cogido Zip', 'Provincia', 'Vendedor'
+            'CogidoZip', 'Provincia', 'Vendedor'
         ];
     }
 
