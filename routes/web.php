@@ -32,6 +32,8 @@ Route::get('/products/export/', [ProductController::class, 'export'])->middlewar
 Route::get('/products/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('products.search');
 Route::resource('/products', ProductController::class)->middleware(['auth', 'verified'])->names('products');
 
+Route::put('/sellers/import', [SellerController::class, 'import'])->middleware(['auth', 'verified'])->name('sellers.import');
+Route::get('/sellers/export/', [SellerController::class, 'export'])->middleware(['auth', 'verified'])->name('sellers.export');
 Route::get('/sellers/search', [SellerController::class, 'search'])->middleware(['auth', 'verified'])->name('sellers.search');
 Route::resource('/sellers', SellerController::class)->middleware(['auth', 'verified'])->names('sellers');
 
