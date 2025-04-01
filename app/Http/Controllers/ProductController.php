@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Http\Requests\Product\ProductStoreRequest;
+use App\Imports\ProductsImport;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -77,6 +80,16 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->back()->with('status', "Delete product: $product->name! se ha eliminado correctamente");
+    }
+
+    public function export(){
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+    public function import(Request $request){
+        Excel::import(new ProductsImport, $request->file('uploadFile'));
+
+        return redirect()->route('products.index');
     }
 
 }
