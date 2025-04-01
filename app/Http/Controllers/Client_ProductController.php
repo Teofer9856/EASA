@@ -77,7 +77,7 @@ class Client_ProductController extends Controller
     {
         $clientPro = ClientProduct::find($id)->delete();
 
-        return redirect()->back()->with('status', "Delete (client-product): $clientPro->id! se ha eliminado exitosamente");
+        return redirect()->back()->with('status', "Delete (client-product): $id! se ha eliminado exitosamente");
     }
 
     public function search(Request $request){
