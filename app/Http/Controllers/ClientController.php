@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ClientsExport;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Imports\ClientsImport;
 use App\Models\Client;
 use App\Models\Province;
 use App\Models\Seller;
@@ -77,6 +78,12 @@ class ClientController extends Controller
     }
 
     public function export(){
-        return Excel::download(new ClientsExport, "clients.xlsx");
+        return Excel::download(new ClientsExport, 'clients.xlsx');
+    }
+
+    public function import(HttpRequest $request){
+        Excel::import(new ClientsImport, $request->file('uploadFile'));
+
+        return redirect()->route('clients.index');
     }
 }
