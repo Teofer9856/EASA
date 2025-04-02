@@ -5,9 +5,9 @@
         @foreach ($list as $item)
         @if ($item != 'id')
             @if ($search['option'] == $item)
-                <option value="{{$item}}" selected>{{ucfirst($item)}}</option>
+                <option value="{{$item}}" selected>{{explode("_id", ucfirst($item))[0]}}</option>
             @else
-                <option value="{{$item}}">{{ucfirst($item)}}</option>
+                <option value="{{$item}}">{{explode("_id", ucfirst($item))[0]}}</option>
             @endif
         @endif
         @endforeach
