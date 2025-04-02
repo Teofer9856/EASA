@@ -3,8 +3,9 @@
     <path stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m19 9-7 7-7-7' />
 </svg> --}}
 <form method="GET" action="{{$route}}">
-    <button type="submit">
-        <i class="fa-solid fa-download text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"></i>
+    <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+        <i class="fa-solid fa-download"></i>
         <span class="sr-only">Icon description</span>
+        <span class="ml-2">Export</span>
     </button>
 </form>
