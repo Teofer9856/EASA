@@ -19,7 +19,7 @@ class ClientsImport implements ToModel, WithHeadingRow, WithSkipDuplicates, With
     */
     public function model(array $row)
     {
-        return new Client([
+        return Client::create([
             'name' => $row['nombre'],
             'email' => $row['email'],
             'zip_code' => $row['zip'],

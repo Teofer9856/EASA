@@ -17,7 +17,7 @@ class SellersImport implements ToModel, WithSkipDuplicates, WithValidation, With
     */
     public function model(array $row)
     {
-        return new Seller([
+        return Seller::create([
             'name' => $row['nombre']
         ]);
     }

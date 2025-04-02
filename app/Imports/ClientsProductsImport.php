@@ -30,7 +30,7 @@ class ClientsProductsImport implements ToModel, WithHeadingRow, WithSkipDuplicat
     */
     public function model(array $row)
     {
-        return new ClientProduct([
+        return ClientProduct::create([
             'client_id' => Client::where('name', 'like', $row['cliente'])->pluck('id')->first(),
             'product_id' => Product::where('name', 'like', $row['producto'])->pluck('id')->first(),
             'price' => $row['precio']

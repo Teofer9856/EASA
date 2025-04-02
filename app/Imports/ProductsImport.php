@@ -17,7 +17,7 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation, WithSki
     */
     public function model(array $row)
     {
-        return new Product([
+        return Product::create([
             'name' => $row['nombre'],
             'reference' => $row['referencia'],
             'stock' => $row['stock']
