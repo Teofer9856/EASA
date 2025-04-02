@@ -45,7 +45,7 @@ class Client_ProductController extends Controller
     {
         $cliPro = ClientProduct::create($request->all());
 
-        return redirect()->route('clients.products.index')->with('status', "Create (client-product): $cliPro->id! se ha actualizado correctamente");
+        return redirect()->route('clients.products.index')->with('status', "Create (client-product): $cliPro->id! se ha creado correctamente");
     }
 
     /**
