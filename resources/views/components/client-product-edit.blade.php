@@ -6,7 +6,7 @@
     <div class="grid md:grid-cols-2 md:gap-6">
         <div class="relative z-0 w-full mb-5 group">
             <label for="client_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente</label>
-            <select name="client_id" value="{{old('client_id', $object->client_id)}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select name="client_id" value="{{old('client_id', $object->client_id)}}" class="search bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @foreach ($clients as $item)
                     @if ($object->client_id == $item->id)
                         <option value="{{$item->id}}" selected>{{$item->name}}</option>
@@ -22,7 +22,7 @@
 
         <div class="relative z-0 w-full mb-5 group">
             <label for="product_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Producto</label>
-            <select name="product_id" value="{{old('product_id', $object->product_id)}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select name="product_id" value="{{old('product_id', $object->product_id)}}" class="search bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @foreach ($products as $item)
                     @if ($object->product_id == $item->id)
                         <option value="{{$item->id}}" selected>{{$item->name}}</option>
