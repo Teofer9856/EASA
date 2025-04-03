@@ -19,9 +19,10 @@ class ClientsImport implements ToModel, WithHeadingRow, WithSkipDuplicates, With
     */
     public function model(array $row)
     {
-        return Client::create([
-            'name' => $row['nombre'],
+        return Client::updateOrCreate([
             'email' => $row['email'],
+        ],[
+            'name' => $row['nombre'],
             'zip_code' => $row['zip'],
             'province_id' => Province::where('name', 'like', $row['provincia'])->pluck('id')->first(),
             'seller_id' => Seller::where('name', 'like', $row['vendedor'])->pluck('id')->first()
@@ -32,7 +33,6 @@ class ClientsImport implements ToModel, WithHeadingRow, WithSkipDuplicates, With
     {
         return [
             'nombre' => 'required|min: 5|max: 50',
-            'email' => 'required|unique:clients,email',
             'zip' => 'required|min:5|max:5',
             'provincia' => 'required',
             'vendedor' => 'required'
