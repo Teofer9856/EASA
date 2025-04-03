@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Client;
 use App\Models\Province;
 use App\Models\Seller;
+use Exception;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithSkipDuplicates;
@@ -34,8 +35,22 @@ class ClientsImport implements ToModel, WithHeadingRow, WithSkipDuplicates, With
         return [
             'nombre' => 'required|min: 5|max: 50',
             'zip' => 'required|min:5|max:5',
-            'provincia' => 'required',
-            'vendedor' => 'required'
+            'provincia' => ['required', function($attribute, $value, $onFailure){
+                    $response = Province::where('name', 'like', $value)->pluck('id')->first();
+                    if(!$response){
+                        $onFailure("La provincia '$value' no existe");
+                    } else {
+                        return $response;
+                    }
+            }],
+            'vendedor' => ['required', function($attribute, $value, $onFailure){
+                $response = Seller::where('name', 'like', $value)->pluck('id')->first();
+                if(!$response){
+                    $onFailure("El vendedor '$value' no existe");
+                } else {
+                    return $response;
+                }
+            }]
         ];
     }
 
