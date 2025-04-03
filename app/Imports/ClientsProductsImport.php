@@ -30,9 +30,10 @@ class ClientsProductsImport implements ToModel, WithHeadingRow, WithSkipDuplicat
     */
     public function model(array $row)
     {
-        return ClientProduct::create([
+        return ClientProduct::updateOrCreate([
             'client_id' => Client::where('name', 'like', $row['cliente'])->pluck('id')->first(),
             'product_id' => Product::where('name', 'like', $row['producto'])->pluck('id')->first(),
+        ],[
             'price' => $row['precio']
         ]);
     }
@@ -40,10 +41,24 @@ class ClientsProductsImport implements ToModel, WithHeadingRow, WithSkipDuplicat
     public function rules():array{
         return [
             'cliente' => [
-                'required',
+                'required', function($attribute, $value, $onFailure){
+                    $response = Client::where('name', 'like', $value)->pluck('id')->first();
+                    if(!$response){
+                        $onFailure("El cliente '$value' no existe");
+                    } else {
+                        return $response;
+                    }
+            },
                 Rule::notIn($this->exist_composite_column)
             ],
-            'producto' => 'required',
+            'producto' => ['required', function($attribute, $value, $onFailure){
+                $response = Product::where('name', 'like', $value)->pluck('id')->first();
+                if(!$response){
+                    $onFailure("El producto '$value' no existe");
+                } else {
+                    return $response;
+                }
+            }],
             'precio' => 'required'
         ];
     }
