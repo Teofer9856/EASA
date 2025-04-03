@@ -41,10 +41,17 @@
                                 <x-stats :stats="$stats"></x-stats>
                             </div>
                             <div class="h-95 col-span-2 bg-white border rounded-lg border-gray-300">
-                                    <canvas id="myChart" data-chart="{{json_encode($data)}}"></canvas>
+                                <canvas id="myChart" data-chart="{{json_encode($data)}}"></canvas>
                             </div>
-                            <div class="h-95 col-span-1 bg-white border rounded-lg border-gray-300">
-                                <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="yes" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1753.7098760163587!2d-3.7178928203997126!3d42.33449148671665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd45fcc4d6a60457%3A0x8ec64bcb475d1d88!2sSofteca%20Internet%20SL!5e0!3m2!1ses!2ses!4v1743167459033!5m2!1ses!2ses" style="filter: contrast(1) opacity(0.9);"></iframe>
+                            <div class="h-95 col-span-1 bg-white border rounded-lg border-black-300">
+                                <div class="stat place-items-center mt-3">
+                                    <div class="stat-value text-lg text-primary text-4xl mt-1">Most Sold</div>
+                                    <div class="stat mt-2">
+                                        <div class="stat-value text-success text-8xl text-center">{{$mostSelledList['total']}}</div>
+                                        <div class="stat-value text-success text-6xl text-center"><span class="text-success text-5xl">{{$mostSelledList['name']}} | {{$mostSelledList['price']}}€</span></div>
+                                    </div>
+                                    <div class="stat-value text-primary text-sm text-3xl">All time</div>
+                                </div>
                             </div>
 
                         </div>

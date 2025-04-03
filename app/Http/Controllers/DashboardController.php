@@ -28,14 +28,31 @@ class DashboardController extends Controller
             count(Client::select('id')->where('created_at', '>=', Carbon::now()->startOfDay()->toDateTimeString())->get()),
             ClientProduct::max('price')
         ];
-        $topThree = Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(3)->pluck('client_id'))->get();
+
+        /* !Revisa */
+        $topFour = count(Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(4)->pluck('client_id'))->get());
+        if($topFour > 3){
+            $topThree = Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(3)->pluck('client_id'))->get();
+        }else{
+            $topThree = Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(4)->pluck('client_id'))->get();
+        }
+
 
         $profit = [
             'lastMonth' => $lastMonthSells = ClientProduct::select('price')->where([['created_at', '>=', $firstDayLastMonth], ['created_at', '<=', $lastDayOfPreviousMonth]])->sum('price'),
             'thisMonth' => $monthSells = ClientProduct::select('price')->where('created_at', '>=', $firstDayMonth)->sum('price')
         ];
 
-        return view('dashboard', compact('data', 'stats', 'topThree', 'profit'));
+        $mostSelled = ClientProduct::select('product_id', ClientProduct::raw('COUNT(*) as cantidad'))->groupBy('product_id')->orderBy('cantidad', 'DESC')->limit(1)->first();
+        $name = Product::where('id', $mostSelled->product_id)->pluck('name');
+        $price = number_format(ClientProduct::where('product_id', $mostSelled->product_id)->sum('price'), 0, ',', '.');
+
+        $mostSelledList = [
+            'name' => $name[0], 'id' => $mostSelled->product_id,
+            'price' => $price, 'total' => $mostSelled->cantidad
+        ];
+
+        return view('dashboard', compact('data', 'stats', 'topThree', 'profit', 'mostSelledList'));
     }
 
 }
