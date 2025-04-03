@@ -3,6 +3,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <style>
+        .tooltip .tooltiptext {
+            width: 150px;
+            height: 25px;
+            top: 101%;
+            left: 43%;
+            margin-left: -33px;
+            background-color: black;
+            color: white;
+        }
+    </style>
 @endpush
 <x-app-layout>
     <x-slot name="header">
@@ -17,10 +30,15 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex-grow p-6 overflow-auto bg-gray-100">
                         <div class="grid grid-cols-3 gap-6">
-                            <div class="h-50 col-span-1 bg-white border rounded-lg border-gray-300"></div>
-                            <div class="h-50 col-span-1 bg-white border rounded-lg border-gray-300"></div>
-                            <div class="h-80 col-span-1 bg-white border rounded-lg border-gray-300">
-
+                            <div class="h-50 col-span-1 bg-white border rounded-lg border-gray-300 tooltip">
+                                <span class="tooltiptext">Top Buyers</span>
+                                <x-buyers :buyers="$topThree"></x-buyers>
+                            </div>
+                            <div class="h-50 col-span-1 bg-white border rounded-lg border-gray-300">
+                                <x-profits :profits="$profit"></x-profits>
+                            </div>
+                            <div class="h-50 col-span-1 bg-white border rounded-lg border-gray-300">
+                                <x-stats :stats="$stats"></x-stats>
                             </div>
                             <div class="h-95 col-span-2 bg-white border rounded-lg border-gray-300">
                                     <canvas id="myChart" data-chart="{{json_encode($data)}}"></canvas>
