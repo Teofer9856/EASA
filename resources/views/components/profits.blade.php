@@ -1,7 +1,7 @@
 <div class="stat mt-8 flex ml-40">
         <div>
-            <div class="stat-title">Total Sells</div>
-            <div class="stat-value text-primary">{{$profits['thisMonth']}}</div>
+            <div class="stat-title">Total Month Sells</div>
+            <div class="stat-value text-primary">{{number_format($profits['thisMonth'], 2, ',', '.')}}$</div>
             <div class="stat-desc">
                 @if (number_format(($profits['thisMonth']/$profits['lastMonth'])-1, 2) > 0)
                     {{explode(".", number_format(($profits['thisMonth']/$profits['lastMonth'])-1, 2))[1]}}% more than last month
