@@ -53,7 +53,7 @@
                                                 {{$mostSelledList['name']}}
                                             </div>
                                             <div class="mt-3">
-                                                {{$mostSelledList['price']}}€
+                                                {{$mostSelledList['price']}} €
                                             </div>
                                     </div>
                                 </div>
