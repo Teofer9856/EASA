@@ -25,8 +25,8 @@ class StoreClientRequest extends FormRequest
             'name' => 'required|min: 5|max: 50',
             'email' => 'required|email|unique:clients,email',
             'zip_code' => 'required|min:5|max:5',
-            'province_id' => 'required',
-            'seller_id' => 'required'
+            'province_id' => 'required|exists:provinces,id',
+            'seller_id' => 'required|exists:sellers,id'
         ];
     }
 }
