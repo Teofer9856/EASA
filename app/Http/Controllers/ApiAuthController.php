@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
-    public function register(Request $request){
+    /* public function register(Request $request){
         $fileds = $request->validate([
             'name' => 'required|max:150',
             'email' => 'required|email|unique:users',
@@ -19,7 +19,7 @@ class ApiAuthController extends Controller
         $token = $user->createToken($user->name);
 
         return ['user' => $user, 'token' => $token->plainTextToken];
-    }
+    } */
 
     public function login(Request $request){
         $request->validate([
@@ -41,6 +41,7 @@ class ApiAuthController extends Controller
     }
 
     public function logout(Request $request){
+        return $request->user();
         $request->user()->tokens()->delete();
 
         return "You are logged out";

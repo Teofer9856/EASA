@@ -11,6 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('/clients', ApiController::class);
 
-Route::post('/register', [ApiAuthController::class, 'register']);
+/* Route::post('/register', [ApiAuthController::class, 'register']); */
 Route::post('/login', [ApiAuthController::class, 'login']);
 Route::post('/logout', [ApiAuthController::class, 'logout'])->middleware('auth:sanctum');
