@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,6 +19,14 @@ class ClientProduct extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     public $sortable = ['client_id', 'product_id', 'price'];
+
+    public function price():Attribute{
+        return Attribute::make(
+            get: function($txt) {
+                return number_format($txt, 2, ',', '.')." €";
+            }
+        );
+    }
 
     public function client():HasOne {
         return $this->hasOne(Client::class, 'id', 'client_id');
