@@ -45,12 +45,17 @@
                             </div>
                             <div class="h-95 col-span-1 bg-white border rounded-lg border-black-300">
                                 <div class="stat place-items-center mt-3">
-                                    <div class="stat-value text-lg text-primary text-4xl mt-1">Most Sold</div>
+                                    <div class="stat-value text-1xl text-primary text-4xl mt-1">Most Sold</div>
                                     <div class="stat mt-2">
                                         <div class="stat-value text-success text-8xl text-center">{{$mostSelledList['total']}}</div>
-                                        <div class="stat-value text-success text-6xl text-center"><span class="text-success text-5xl">{{$mostSelledList['name']}} | {{$mostSelledList['price']}}€</span></div>
+                                        <div class="stat-value text-success text-6xl text-center"><span class="text-success text-5xl">
+                                            <div>
+                                                {{$mostSelledList['name']}}
+                                            </div>
+                                            <div class="mt-3">
+                                                {{$mostSelledList['price']}}€
+                                            </div>
                                     </div>
-                                    <div class="stat-value text-primary text-sm text-3xl">All time</div>
                                 </div>
                             </div>
 
