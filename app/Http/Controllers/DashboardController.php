@@ -25,7 +25,7 @@ class DashboardController extends Controller
 
         $stats = [
             count(Product::select('id')->where('created_at', '>=', Carbon::now()->subDays(30)->toDateTimeString())->get()),
-            count(Client::select('id')->where('created_at', '>=', Carbon::now()->startOfDay()->toDateTimeString())->get()),
+            count(Client::select('id')->where('created_at', '>=', $firstDayMonth)->get()),
             ClientProduct::max('price')
         ];
 
