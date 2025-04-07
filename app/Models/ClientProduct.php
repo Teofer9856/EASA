@@ -24,6 +24,9 @@ class ClientProduct extends Model
         return Attribute::make(
             get: function($txt) {
                 return number_format($txt, 2, ',', '.')." €";
+            },
+            set: function ($txt) {
+                return (float) $txt;
             }
         );
     }
