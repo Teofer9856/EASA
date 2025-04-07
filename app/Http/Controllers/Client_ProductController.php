@@ -9,6 +9,7 @@ use App\Imports\ClientsProductsImport;
 use App\Models\Client;
 use App\Models\ClientProduct;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
@@ -65,7 +66,11 @@ class Client_ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $client_product = ClientProduct::find($id);
-        $client_product->update($request->all());
+        try{
+            $client_product->update($request->all());
+        } catch (Exception $e){
+            return redirect()->route('clients.products.index')->with('status', "Error (client-product): $client_product->id! no se puede duplicar el producto");
+        }
 
         return redirect()->route('clients.products.index')->with('status', "Update (client-product): $client_product->id! se ha actualizado correctamente");
     }
