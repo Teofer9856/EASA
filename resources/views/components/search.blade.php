@@ -1,7 +1,7 @@
 <form class="flex items-center mb-3" method="GET" action="{{$route}}">
     @csrf
-    <select name="option" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option>All</option>
+    <select name="option" id="option" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="All">All</option>
         @foreach ($list as $item)
         @if ($item != 'id')
             @if ($search['option'] == $item)
@@ -20,3 +20,20 @@
         <span class="sr-only">Search</span>
     </button>
 </form>
+<script>
+    let option = document.getElementById('option');
+    let input = document.querySelector('[name="search"]');
+
+    if(option.value == "All"){
+        input.disabled = true;
+    }
+
+    option.addEventListener('change', (e) => {
+        if(e.target.value != "All"){
+            input.disabled = false;
+        } else {
+            input.value = "";
+            input.disabled = true;
+        }
+    })
+</script>
