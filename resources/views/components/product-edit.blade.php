@@ -1,4 +1,4 @@
-<x-backButton :route="route('products.index')"></x-backButton>
+<x-backButton :route="url()->previous()"></x-backButton>
 <form class="max-w-md mx-auto" method="POST" action="{{route('products.update', $product)}}">
     @csrf
     @method('PUT')
