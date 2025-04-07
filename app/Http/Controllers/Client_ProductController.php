@@ -20,7 +20,7 @@ class Client_ProductController extends Controller
      */
     public function index()
     {
-        $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client_id')->paginate(15));
+        $cliPro_list = ClientProduct::namesChange(ClientProduct::sortable('client')->paginate(15));
         $names_list = ClientProduct::fileteredNames(Schema::getColumnListing('clients_products'));
         $input = ['search' => '', 'option' => ''];
 
