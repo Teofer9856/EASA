@@ -26,7 +26,7 @@ class ClientProduct extends Model
                 return number_format($txt, 2, ',', '.')." €";
             },
             set: function ($txt) {
-                return (float) $txt;
+                return (float) str_replace(",", ".", $txt);
             }
         );
     }
