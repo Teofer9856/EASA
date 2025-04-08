@@ -7,6 +7,7 @@ use App\Models\ClientProduct;
 use App\Models\Product;
 use App\Models\Seller;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -30,13 +31,8 @@ class DashboardController extends Controller
         ];
 
         /* !Revisa */
-        $topFour = count(Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(4)->pluck('client_id'))->get());
-        if($topFour > 3){
-            $topThree = Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(3)->pluck('client_id'))->get();
-        }else{
-            $topThree = Client::whereIn('id', ClientProduct::orderBy('price', 'desc')->take(4)->pluck('client_id'))->get();
-        }
-
+        $topThreeIds = ClientProduct::select('client_id')->groupBy('client_id')->orderBy(DB::raw('max(price)'), 'desc')->take(3)->pluck('client_id');
+        $topThree = Client::whereIn('id', $topThreeIds)->orderBy('id', 'desc')->get();
 
         $profit = [
             'lastMonth' => $lastMonthSells = ClientProduct::select('price')->where([['created_at', '>=', $firstDayLastMonth], ['created_at', '<=', $lastDayOfPreviousMonth]])->sum('price'),
