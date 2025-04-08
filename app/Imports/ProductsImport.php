@@ -18,10 +18,10 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation, WithSki
     public function model(array $row)
     {
         return Product::updateOrCreate([
-            'name' => $row['nombre'],
+            'reference' => $row['referencia'],
         ],
         [
-            'reference' => $row['referencia'],
+            'name' => $row['nombre'],
             'stock' => $row['stock']
         ]);
     }
@@ -29,7 +29,7 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation, WithSki
     public function rules(): array
     {
         return [
-            'nombre' => 'required|min: 5|max: 50',
+            'nombre' => 'required|min: 3|max: 50',
             'referencia' => 'required|min: 5|max: 5',
             'stock' => 'required|integer|min:1|max:999',
         ];
