@@ -30,7 +30,7 @@ class ClientsProductsExport implements FromCollection, WithHeadings, WithMapping
         return [
             $client_product->client->name,
             $client_product->product->name,
-            $client_product->price
+            str_replace(".", "", explode(" €", $client_product->price)[0])
         ];
     }
 
