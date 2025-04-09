@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Client_ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\Product_ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;

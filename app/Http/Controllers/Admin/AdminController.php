@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Client;
-use App\Models\ClientProduct;
-use App\Models\Product;
-use App\Models\Seller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class AdminController extends Controller
@@ -20,6 +16,6 @@ class AdminController extends Controller
         $input = ['search' => '', 'option' => ''];
 
         $success = session('success');
-        return view('admin.index', compact(['clients_list', 'names_list', 'input', 'success']));
+        return view('clients.index', compact(['clients_list', 'names_list', 'input', 'success']));
     }
 }
