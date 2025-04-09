@@ -9,6 +9,13 @@
         </h2>
         <div class="flex">
             {{-- <x-button-icon :route="route('clients.create')"></x-button-icon> --}}
+            <div class="dropdown dropdown-hover">
+                <div tabindex="0" role="button" class="btn btn-outline btn-neutral m-1 border border-black">Mas Opciones</div>
+                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                  <li><a href="{{ route('admin.roles.index') }}">Roles</a></li>
+                  <li><a href="{{ route('admin.permissions.index') }}">Permisos</a></li>
+                </ul>
+            </div>
         </div>
     </x-slot>
 
