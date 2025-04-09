@@ -1,5 +1,5 @@
 <div class="stat mt-7 ml-auto">
-    <div class="flex inline-block px-5">
+    <div class="flex inline-block px-15">
         <div>
             <div class="stat-title text-base">Total Month Sells</div>
             <div class="stat-value text-primary text-6xl">{{number_format($profits['thisMonth'], 2, ',', '.')}}€</div>
