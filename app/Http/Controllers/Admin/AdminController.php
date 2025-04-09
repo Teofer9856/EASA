@@ -16,6 +16,6 @@ class AdminController extends Controller
         $input = ['search' => '', 'option' => ''];
 
         $success = session('success');
-        return view('clients.index', compact(['clients_list', 'names_list', 'input', 'success']));
+        return view('admin.index', compact(['clients_list', 'names_list', 'input', 'success']));
     }
 }
