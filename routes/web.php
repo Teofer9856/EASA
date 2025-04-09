@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Client_ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
@@ -16,7 +18,12 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.index');
+/* Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.index'); */
+Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function(){
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/permissions', PermissionController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
