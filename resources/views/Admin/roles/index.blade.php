@@ -8,7 +8,7 @@
             {{ __('Admin Roles') }}
         </h2>
         <div class="flex">
-            {{-- <x-button-icon :route="route('clients.create')"></x-button-icon> --}}
+            <x-button-icon :route="route('admin.roles.create')" class="mt-1"></x-button-icon>
             <div class="dropdown dropdown-hover">
                 <div tabindex="0" role="button" class="btn btn-outline btn-neutral m-1 border border-black">Mas Opciones</div>
                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
@@ -23,8 +23,6 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{-- <x-search :list="$names_list" :route="route('clients.search')" class="mb-4" :search="$input"></x-search>
-                    <x-table :headers="$names_list" :route_delete="'clients.destroy'" :route_edit="'clients.edit'" :list="$clients_list"></x-table> --}}
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                           <!-- head -->
                           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
