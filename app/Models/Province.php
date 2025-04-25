@@ -21,8 +21,9 @@ class Province extends Model
 
     protected $fillable = ['name'];
 
-    public function apiToArray(){
-        $response = Http::get('https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLE/20');
+    public function apiToArray()
+    {
+        $response = Http::get('https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLEOPERACION/115/22');
 
         if (!$response->ok()) {
             return [];
@@ -32,25 +33,24 @@ class Province extends Model
         $provincesList = [];
 
         foreach ($data as $item) {
-            if (intval($item['Id']) > 0 && intval($item['Id']) < 100) {
-                $province = $item['Nombre'];
+            $province = $item['Nombre'];
 
-                if (str_contains($province, ', ')) {
-                    $province = implode(' ', array_reverse(explode(', ', $province)));
-                }
-
-                if (str_contains($province, '/')) {
-                    $province = explode('/', $province)[1];
-                }
-
-                array_push($provincesList, $province);
+            if (str_contains($province, ', ')) {
+                $province = implode(' ', array_reverse(explode(', ', $province)));
             }
+
+            if (str_contains($province, '/')) {
+                $province = explode('/', $province)[1];
+            }
+
+            array_push($provincesList, [$item['Id'] => $province]);
         }
 
         return $provincesList;
     }
 
-    public function client(): HasMany{
+    public function client(): HasMany
+    {
         return $this->hasMany(Client::class);
     }
 }
