@@ -20,7 +20,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 /* Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.index'); */
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::resource('/', AdminController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
 });
