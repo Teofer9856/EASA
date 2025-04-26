@@ -43,7 +43,7 @@ class Province extends Model
                 $province = explode('/', $province)[1];
             }
 
-            array_push($provincesList, [$item['Id'] => $province]);
+            array_push($provincesList, $province);
         }
 
         return $provincesList;
