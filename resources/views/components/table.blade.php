@@ -1,4 +1,4 @@
-@props(['align' => 1, 'route_delete', 'route_edit'])
+@props(['align' => 1, 'route_delete', 'route_edit', 'headers', 'list'])
 @php
     switch ($align) {
         case 1:
