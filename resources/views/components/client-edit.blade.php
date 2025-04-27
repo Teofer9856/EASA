@@ -1,4 +1,4 @@
-<x-backButton :route="url()->previous()"></x-backButton>
+<x-backButton :route="route('clients.index')"></x-backButton>
 <form class="max-w-md mx-auto" method="POST" action="{{route('clients.update', $client)}}">
     @csrf
     @method('PUT')
