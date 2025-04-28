@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 class AdminController extends Controller
 {
     function index(){
-        $users = User::all();
+        $users = User::select()->where('id', '>', 1)->get();
         return view('admin.index', compact('users'));
     }
 }
