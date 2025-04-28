@@ -8,7 +8,6 @@
             {{ __('Admin Permissions') }}
         </h2>
         <div class="flex">
-            <x-button-icon :route="route('admin.permissions.create')" class="mt-1"></x-button-icon>
             <div class="dropdown dropdown-hover">
                 <div tabindex="0" role="button" class="btn btn-outline btn-neutral m-1 border border-black">Mas Opciones</div>
                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
@@ -28,7 +27,6 @@
                           <tr>
                             <th scope="col" class="px-6 py-3"></th>
                             <th scope="col" class="px-6 py-3">Name</th>
-                            <th scope="col" class="px-6 py-3">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -36,10 +34,6 @@
                               <tr class="hover:bg-base-300">
                                   <td class="px-6 py-4"><div aria-label="success" class="status status-success"></div></td>
                                   <td class="px-6 py-4">{{$permission->name}}</td>
-                                  <td class="px-6 py-4">
-                                      <x-button :client="$permission" :route="'admin.permissions.edit'" color="blue">EDIT</x-button>
-                                      <x-delete-button :route="'admin.permissions.destroy'" :object="$permission">{{$permission->name ?? "Corrige Esto"}}</x-delete-button>
-                                  </td>
                               </tr>
                           @endforeach
                         </tbody>
