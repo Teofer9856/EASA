@@ -21,33 +21,6 @@
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
@@ -63,23 +36,7 @@
                             </span>
                             <span>
                                 Read the
-                                <a href="https://laravel.com/docs" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                     <span>Documentation</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="w-2.5 h-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
                             </span>
                         </li>
                         <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:bottom-1/2 before:top-0 before:left-[0.4rem] before:absolute">
@@ -90,35 +47,44 @@
                             </span>
                             <span>
                                 Watch video tutorials at
-                                <a href="https://laracasts.com" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                     <span>Laracasts</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="w-2.5 h-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
                             </span>
                         </li>
                     </ul>
-                    <ul class="flex gap-3 text-sm leading-normal">
-                        <li>
-                            <a href="https://cloud.laravel.com" target="_blank" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
-                                Deploy now
-                            </a>
-                        </li>
+                    <ul class="flex justify-center">
+                        <div>
+                            @if (Route::has('login'))
+                                <nav class="flex items-center justify-end gap-4">
+                                    @auth
+                                        <a
+                                            href="{{ url('/dashboard') }}"
+                                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] bg-[#1b1b18] text-white border-[#19140035] hover:border-[#1915014a] border dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                                        >
+                                            Dashboard
+                                        </a>
+                                    @else
+                                        <a
+                                            href="{{ route('login') }}"
+                                            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                                        >
+
+                                            Log in
+                                        </a>
+
+                                        @if (Route::has('register'))
+                                            <a
+                                                href="{{ route('register') }}"
+                                                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                                Register
+                                            </a>
+                                        @endif
+                                    @endauth
+                                </nav>
+                            @endif
+                        </div>
                     </ul>
                 </div>
-                <div class="bg-[#fff2f2] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden">
+                <div class="dark:bg-yellow-700 relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden" style="background-color: #c7c4df;">
                     {{-- Laravel Logo --}}
                     <div class="p-20">
                         <svg class="mt-4" viewBox="0 0 550 550" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -132,7 +98,6 @@
                                 <path class="st0" d="M336.42,440.81l-39.37-62.96-48.84,15.86s-5.57.93-13.56,16.9c-7.99,15.97-15.04,25.44-15.04,25.44h-10.77l-19.84,34.36h30.79s-12.26-7.06-.74-19.31c11.51-12.26,25.19-5.96,35.47-23.77l10.28-17.81-5.27,19.68s43.43-13.16,76.89,11.61h0Z" style="fill: rgb(51, 55, 69); fill-rule: evenodd;"></path>
                             </svg>
                         </svg>
-                        <svg viewBoxSize="575" data-root-id="3025971991348" xmlns="http://www.w3.org/2000/svg" y="325.66349548339844" viewBox="3.759999990463257 10.720000267028809 89.07999420166016 28.279998779296875" x="242.95999771118164" height="28.279998779296875" width="89.07999420166016" fontUrl="https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-Y3tcoqK5.ttf" zoom="1" editorType="buyer" data-layer-role="brandName" style="position: absolute; top: 325.663px; width: 89.08px; height: 28.28px; left: 242.96px;"><g data-horizontal-grow="center" zoom="1" root="[object Object]" style="fill: rgb(51, 55, 69); fill-opacity: 1;"><path d="M24.76 38.72L3.76 38.72L3.76 10.72L24.20 10.72L24.20 15.08L8.96 15.08L8.96 34.36L24.76 34.36L24.76 38.72ZM22.48 26.64L8.56 26.64L8.56 22.36L22.48 22.36L22.48 26.64ZM47.96 38.72L43.24 38.72L43.24 34.40L42.96 33.48L42.96 25.92Q42.96 23.72 41.64 22.50Q40.32 21.28 37.64 21.28L37.64 21.28Q35.84 21.28 34.10 21.84Q32.36 22.40 31.16 23.40L31.16 23.40L29.20 19.76Q30.92 18.44 33.30 17.78Q35.68 17.12 38.24 17.12L38.24 17.12Q42.88 17.12 45.42 19.34Q47.96 21.56 47.96 26.20L47.96 26.20L47.96 38.72ZM36.52 39L36.52 39Q34.12 39 32.32 38.18Q30.52 37.36 29.54 35.90Q28.56 34.44 28.56 32.60L28.56 32.60Q28.56 30.80 29.42 29.36Q30.28 27.92 32.24 27.08Q34.20 26.24 37.44 26.24L37.44 26.24L43.64 26.24L43.64 29.56L37.80 29.56Q35.24 29.56 34.36 30.38Q33.48 31.20 33.48 32.40L33.48 32.40Q33.48 33.76 34.56 34.56Q35.64 35.36 37.56 35.36L37.56 35.36Q39.40 35.36 40.86 34.52Q42.32 33.68 42.96 32.04L42.96 32.04L43.80 35.04Q43.08 36.92 41.22 37.96Q39.36 39 36.52 39ZM60.96 39L60.96 39Q58.28 39 55.82 38.30Q53.36 37.60 51.92 36.60L51.92 36.60L53.84 32.80Q55.28 33.72 57.28 34.32Q59.28 34.92 61.28 34.92L61.28 34.92Q63.64 34.92 64.70 34.28Q65.76 33.64 65.76 32.56L65.76 32.56Q65.76 31.68 65.04 31.22Q64.32 30.76 63.16 30.52Q62 30.28 60.58 30.08Q59.16 29.88 57.74 29.54Q56.32 29.20 55.16 28.54Q54 27.88 53.28 26.76Q52.56 25.64 52.56 23.80L52.56 23.80Q52.56 21.76 53.72 20.26Q54.88 18.76 56.98 17.94Q59.08 17.12 61.96 17.12L61.96 17.12Q64.12 17.12 66.32 17.60Q68.52 18.08 69.96 18.96L69.96 18.96L68.04 22.76Q66.52 21.84 64.98 21.50Q63.44 21.16 61.92 21.16L61.92 21.16Q59.64 21.16 58.54 21.84Q57.44 22.52 57.44 23.56L57.44 23.56Q57.44 24.52 58.16 25Q58.88 25.48 60.04 25.76Q61.20 26.04 62.62 26.22Q64.04 26.40 65.44 26.76Q66.84 27.12 68.02 27.74Q69.20 28.36 69.92 29.48Q70.64 30.60 70.64 32.40L70.64 32.40Q70.64 34.40 69.46 35.88Q68.28 37.36 66.12 38.18Q63.96 39 60.96 39ZM92.84 38.72L88.12 38.72L88.12 34.40L87.84 33.48L87.84 25.92Q87.84 23.72 86.52 22.50Q85.20 21.28 82.52 21.28L82.52 21.28Q80.72 21.28 78.98 21.84Q77.24 22.40 76.04 23.40L76.04 23.40L74.08 19.76Q75.80 18.44 78.18 17.78Q80.56 17.12 83.12 17.12L83.12 17.12Q87.76 17.12 90.30 19.34Q92.84 21.56 92.84 26.20L92.84 26.20L92.84 38.72ZM81.40 39L81.40 39Q79 39 77.20 38.18Q75.40 37.36 74.42 35.90Q73.44 34.44 73.44 32.60L73.44 32.60Q73.44 30.80 74.30 29.36Q75.16 27.92 77.12 27.08Q79.08 26.24 82.32 26.24L82.32 26.24L88.52 26.24L88.52 29.56L82.68 29.56Q80.12 29.56 79.24 30.38Q78.36 31.20 78.36 32.40L78.36 32.40Q78.36 33.76 79.44 34.56Q80.52 35.36 82.44 35.36L82.44 35.36Q84.28 35.36 85.74 34.52Q87.20 33.68 87.84 32.04L87.84 32.04L88.68 35.04Q87.96 36.92 86.10 37.96Q84.24 39 81.40 39Z" transform="translate(0, 0)"></path></g></svg>
                     </div>
 
                     <div class="absolute inset-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"></div>
