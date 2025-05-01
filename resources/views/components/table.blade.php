@@ -41,9 +41,11 @@
                             <th scope="col" class="px-4 py-3 text-center"></th>
                         @endif
                     @endforeach
-                    <th class="px-4 py-3 text-center">
-                        Action
-                    </th>
+                    @canany(['editar', 'eliminar'])
+                        <th class="px-4 py-3 text-center">
+                            Action
+                        </th>
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -62,10 +64,23 @@
                                     </td>
                                 @endif
                             @endforeach
-                            <td class="px-4 py-3 text-center">
-                                <x-button :client="$value" :route="$route_edit" color="blue">EDIT</x-button>
-                                <x-delete-button :route="$route_delete" :object="$value">{{$value->name ?? $value->id}}</x-delete-button>
-                            </td>
+                            @role('admin')
+                                <td class="px-4 py-3 text-center">
+                                    <x-button :client="$value" :route="$route_edit" color="blue">EDIT</x-button>
+                                    <x-delete-button :route="$route_delete" :object="$value">{{$value->name ?? $value->id}}</x-delete-button>
+                                </td>
+                            @else
+                                @can('editar')
+                                    <td class="px-4 py-3 text-center">
+                                        <x-button :client="$value" :route="$route_edit" color="blue">EDIT</x-button>
+                                    </td>
+                                @endcan
+                                @can('eliminar')
+                                    <td class="px-4 py-3 text-center">
+                                        <x-delete-button :route="$route_delete" :object="$value">{{$value->name ?? $value->id}}</x-delete-button>
+                                    </td>
+                                @endcan
+                            @endrole
                         </tr>
                     @endforeach
                 </tr>
