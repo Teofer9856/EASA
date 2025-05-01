@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Client_ProductController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Product_ClientController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SellerController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Client_ProductController;
+use App\Http\Controllers\Product_ClientController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Models\Client;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +19,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-/* Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.index'); */
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function(){
     Route::resource('/', AdminController::class);
     Route::resource('/roles', RoleController::class);
@@ -31,24 +31,32 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::put('/clients/import', [ClientController::class, 'import'])->middleware(['auth', 'verified'])->name('clients.import');
-Route::get('/clients/export/', [ClientController::class, 'export'])->middleware(['auth', 'verified'])->name('clients.export');
-Route::get('/clients/search', [ClientController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.search');
+Route::middleware(['auth', 'verified'])->name('clients')->prefix('clients')->group(function () {
+    Route::put('/import', [ClientController::class, 'import'])->name('.import');
+    Route::get('/export', [ClientController::class, 'export'])->name('.export');
+    Route::get('/search', [ClientController::class, 'search'])->name('.search');
+});
 Route::resource('/clients', ClientController::class)->middleware(['auth', 'verified'])->names('clients');
 
-Route::put('/products/import', [ProductController::class, 'import'])->middleware(['auth', 'verified'])->name('products.import');
-Route::get('/products/export/', [ProductController::class, 'export'])->middleware(['auth', 'verified'])->name('products.export');
-Route::get('/products/search', [ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('products.search');
+Route::middleware(['auth', 'verified'])->name('products')->prefix('products')->group(function () {
+    Route::put('/import', [ProductController::class, 'import'])->name('.import');
+    Route::get('/export', [ProductController::class, 'export'])->name('.export');
+    Route::get('/search', [ProductController::class, 'search'])->name('.search');
+});
 Route::resource('/products', ProductController::class)->middleware(['auth', 'verified'])->names('products');
 
-Route::put('/sellers/import', [SellerController::class, 'import'])->middleware(['auth', 'verified'])->name('sellers.import');
-Route::get('/sellers/export/', [SellerController::class, 'export'])->middleware(['auth', 'verified'])->name('sellers.export');
-Route::get('/sellers/search', [SellerController::class, 'search'])->middleware(['auth', 'verified'])->name('sellers.search');
+Route::middleware(['auth', 'verified'])->name('sellers')->prefix('sellers')->group(function () {
+    Route::put('/import', [SellerController::class, 'import'])->name('.import');
+    Route::get('/export', [SellerController::class, 'export'])->name('.export');
+    Route::get('/search', [SellerController::class, 'search'])->name('.search');
+});
 Route::resource('/sellers', SellerController::class)->middleware(['auth', 'verified'])->names('sellers');
 
-Route::put('/clients-products/import', [Client_ProductController::class, 'import'])->middleware(['auth', 'verified'])->name('clients.products.import');
-Route::get('/clients-products/export/', [Client_ProductController::class, 'export'])->middleware(['auth', 'verified'])->name('clients.products.export');
-Route::get('/clients-products/search', [Client_ProductController::class, 'search'])->middleware(['auth', 'verified'])->name('clients.products.search');
+Route::middleware(['auth', 'verified'])->name('clients.products')->prefix('clients-products')->group(function () {
+    Route::put('import', [Client_ProductController::class, 'import'])->name('.import');
+    Route::get('export', [Client_ProductController::class, 'export'])->name('.export');
+    Route::get('search', [Client_ProductController::class, 'search'])->name('.search');
+});
 Route::resource('/clients-products', Client_ProductController::class)->middleware(['auth', 'verified'])->names('clients.products');
 
 
