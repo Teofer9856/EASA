@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Schema;
 
 class AdminController extends Controller
 {
-    function index(){
+    public function index(){
         $users = User::select()->where('id', '>', 1)->get();
         return view('admin.index', compact('users'));
     }
