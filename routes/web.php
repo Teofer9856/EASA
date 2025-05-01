@@ -9,9 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Client_ProductController;
-use App\Http\Controllers\Product_ClientController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Models\Client;
 
 Route::get('/', function () {
     return view('welcome');
