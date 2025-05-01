@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Seller;
+use App\Models\Province;
 use App\Exports\ClientsExport;
+use App\Imports\ClientsImport;
+use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use App\Imports\ClientsImport;
-use App\Models\Client;
-use App\Models\Province;
-use App\Models\Seller;
+
 use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Schema;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ClientController extends Controller
 {
+    public function __construct(){
+        $this->middleware('permission:ver')->only(['index', 'search']);
+        $this->middleware('permission:crear')->only(['create', 'store']);
+        $this->middleware('permission:editar')->only(['edit', 'update']);
+        $this->middleware('permission:borrar')->only(['destroy']);
+    }
+
     public function index(){
         $clients_list = Client::namesChange(Client::sortable('name')->paginate(15));
         $entity = Schema::getColumnListing('clients');
@@ -33,7 +42,7 @@ class ClientController extends Controller
     }
 
     public function store(StoreClientRequest $request){
-        $client = Client::create($request->validated());
+        Client::create($request->validated());
 
         return redirect()->route('clients.index')->with('status', "Create client: $request->name! se ha creado correctamente");
     }
