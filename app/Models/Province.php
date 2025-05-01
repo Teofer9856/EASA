@@ -21,7 +21,7 @@ class Province extends Model
 
     protected $fillable = ['name'];
 
-    public function apiToArray()
+    public static function apiToArray()
     {
         $response = Http::get('https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLEOPERACION/115/22');
 
