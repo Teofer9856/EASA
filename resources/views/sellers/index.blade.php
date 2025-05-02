@@ -8,7 +8,9 @@
             {{ __('Vendedores') }}
         </h2>
         <div class="flex">
-            <x-import-icon :route="route('sellers.import')"></x-import-icon>
+            @can('editar')
+                <x-import-icon :route="route('sellers.import')"></x-import-icon>
+            @endcan
             <x-export-icon :route="route('sellers.export')"></x-export-icon>
             <x-button-icon :route="route('sellers.create')"></x-button-icon>
         </div>
