@@ -38,7 +38,7 @@
                                 @endswitch
                             </th>
                         @else
-                            <th scope="col" class="px-4 py-3 text-center"></th>
+                            <th scope="col" class="px-4 py-3 text-start">⊛</th>
                         @endif
                     @endforeach
                     @canany(['editar', 'eliminar'])
