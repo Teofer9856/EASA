@@ -23,8 +23,11 @@
 <span>
     <a href="{{route($route, $client)}}">
         <button {{$attributes->merge(['class' => $class])}}>
-            <span class="tooltiptext">PERMIT</span>
-            <svg class="h-5 w-5" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 10H6C4.89543 10 4 10.8954 4 12V38C4 39.1046 4.89543 40 6 40H42C43.1046 40 44 39.1046 44 38V29.5" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M10 23H20" stroke="#000000" stroke-width="4" stroke-linecap="round"></path> <path d="M10 31H38" stroke="#000000" stroke-width="4" stroke-linecap="round"></path> <circle cx="34" cy="16" r="6" fill="#000000" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></circle> <path d="M44.0001 28.4187C42.0469 24.6023 38.153 22 33.6682 22C28.2313 22 23.663 25.8243 22.3677 31" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path> </g>
+            <span class="tooltiptext">ROL</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="black" class="h-5 w-5" viewBox="0 0 52 52" data-name="Layer 1">
+                <path d="M38.3,27.2A11.4,11.4,0,1,0,49.7,38.6,11.46,11.46,0,0,0,38.3,27.2Zm2,12.4a2.39,2.39,0,0,1-.9-.2l-4.3,4.3a1.39,1.39,0,0,1-.9.4,1,1,0,0,1-.9-.4,1.39,1.39,0,0,1,0-1.9l4.3-4.3a2.92,2.92,0,0,1-.2-.9,3.47,3.47,0,0,1,3.4-3.8,2.39,2.39,0,0,1,.9.2c.2,0,.2.2.1.3l-2,1.9a.28.28,0,0,0,0,.5L41.1,37a.38.38,0,0,0,.6,0l1.9-1.9c.1-.1.4-.1.4.1a3.71,3.71,0,0,1,.2.9A3.57,3.57,0,0,1,40.3,39.6Z"/>
+                <circle cx="21.7" cy="14.9" r="12.9"/>
+                <path d="M25.2,49.8c2.2,0,1-1.5,1-1.5h0a15.44,15.44,0,0,1-3.4-9.7,15,15,0,0,1,1.4-6.4.77.77,0,0,1,.2-.3c.7-1.4-.7-1.5-.7-1.5h0a12.1,12.1,0,0,0-1.9-.1A19.69,19.69,0,0,0,2.4,47.1c0,1,.3,2.8,3.4,2.8H24.9C25.1,49.8,25.1,49.8,25.2,49.8Z"/>
             </svg>
         </button>
     </a>
