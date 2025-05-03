@@ -21,7 +21,7 @@ class ClientController extends Controller
         $this->middleware('permission:ver')->only(['index', 'search']);
         $this->middleware('permission:crear')->only(['create', 'store']);
         $this->middleware('permission:editar')->only(['edit', 'update']);
-        $this->middleware('permission:borrar')->only(['destroy']);
+        $this->middleware('permission:eliminar')->only(['destroy']);
     }
 
     public function index(){
