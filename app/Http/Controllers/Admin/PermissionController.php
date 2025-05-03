@@ -10,13 +10,13 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
-    function index(){
+    public function index(){
         $permissions = Permission::all();
 
         return view('admin.permissions.index', compact('permissions'));
     }
 
-    function edit($id){
+    public function edit($id){
         $user = User::findOrFail($id);
         $permissions = Permission::all();
         $roles = Role::all()->pluck('name')->toArray();
@@ -26,7 +26,7 @@ class PermissionController extends Controller
         return view('admin.permissions.edit', compact('user', 'permissions', 'roles', 'userRoles', 'userPermissions'));
     }
 
-    function update(Request $request, $id){
+    public function update(Request $request, $id){
         $user = User::findOrFail($id);
         $user->syncRoles($request->input('roles'));
         $user->syncPermissions($request->input('permissions'));
