@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 class RoleController extends Controller
 {
     public function index(){
-        $roles = Role::all();
+        $roles = Role::where('id', '>', 1)->get();
 
         return view('admin.roles.index', compact('roles'));
     }
