@@ -30,6 +30,7 @@
                                     <th scope="col" class="px-3 py-3"></th>
                                     <th scope="col" class="px-6 py-3">Nombre</th>
                                     <th scope="col" class="px-6 py-3">Email</th>
+                                    <th scope="col" class="px-6 py-3">Roles</th>
                                     <th scope="col" class="px-6 py-3">Action</th>
                                 </tr>
                             </thead>
@@ -39,7 +40,7 @@
                                         <td class="px-6 py-4"><div aria-label="status" class="status status-neutral status-md"></div></td>
                                         <td class="px-6 py-4">{{ $user->name }}</td>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->email }}</th>
-                                        <td class="px-6 py-4">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->roles[0]->name }}<td class="px-6 py-4">
                                             <x-permission-button color="yellow" :client="$user" route="admin.permissions.edit"></x-permission-button>
                                             <x-delete-button :route="'admin.destroy'" :object="$user">{{$user->name ?? "Corrige Esto"}}</x-delete-button>
                                         </td>
