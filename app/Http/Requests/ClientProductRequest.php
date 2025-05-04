@@ -24,7 +24,7 @@ class ClientProductRequest extends FormRequest
         return [
             'client_id' => 'required',
             'product_id' => 'required',
-            'price' => 'required|integer|min:20|max:99999',
+            'price' => 'required|decimal:0,2|min:20|max:99999',
             'client_id' => ['required', \Illuminate\Validation\Rule::unique('clients_products')->where(function ($query) {
                 return $query->where('product_id', $this->product_id);
             })]
