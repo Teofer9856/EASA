@@ -14,6 +14,13 @@ class ClientProductRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'price' => str_replace(['.', ','], ['', '.'], $this->price),
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
