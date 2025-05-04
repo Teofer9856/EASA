@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ProductsExport;
-use App\Http\Requests\Product\ProductStoreRequest;
-use App\Imports\ProductsImport;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
+use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
+use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Schema;
+use App\Http\Requests\Product\ProductStoreRequest;
 
 class ProductController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('permission:ver')->only(['index', 'search']);
+        $this->middleware('permission:crear')->only(['create', 'store']);
+        $this->middleware('permission:editar')->only(['edit', 'update']);
+        $this->middleware('permission:eliminar')->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */

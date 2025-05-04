@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ClientsProductsExport;
-use App\Http\Requests\ClientProductRequest;
-use App\Http\Requests\ClientProductUpdateRequest;
-use App\Imports\ClientsProductsImport;
-use App\Models\Client;
-use App\Models\ClientProduct;
-use App\Models\Product;
 use Exception;
+use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
+use App\Models\ClientProduct;
+use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClientsProductsExport;
+use App\Imports\ClientsProductsImport;
+use Illuminate\Support\Facades\Schema;
+use App\Http\Requests\ClientProductRequest;
 
 class Client_ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:ver')->only(['index', 'search']);
+        $this->middleware('permission:crear')->only(['create', 'store']);
+        $this->middleware('permission:editar')->only(['edit', 'update']);
+        $this->middleware('permission:eliminar')->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -80,7 +88,7 @@ class Client_ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $clientPro = ClientProduct::find($id)->delete();
+        ClientProduct::find($id)->delete();
 
         return redirect()->back()->with('status', "Delete (client-product): $id! se ha eliminado exitosamente");
     }

@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\SellersExport;
-use App\Imports\SellersImport;
 use App\Models\Seller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
+use App\Exports\SellersExport;
+use App\Imports\SellersImport;
+use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Schema;
 
 class SellerController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:ver')->only(['index', 'search']);
+        $this->middleware('permission:crear')->only(['create', 'store']);
+        $this->middleware('permission:editar')->only(['edit', 'update']);
+        $this->middleware('permission:eliminar')->only(['destroy']);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
