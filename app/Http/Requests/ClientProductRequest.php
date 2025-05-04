@@ -31,35 +31,4 @@ class ClientProductRequest extends FormRequest
         ];
 
     }
-
-    /* public function rules(): array
-    {
-        return [
-            'client_id' => 'required',
-            'product_id' => 'required',
-            'price' => 'required',
-            'client_id' => [
-                'required',
-                \Illuminate\Validation\Rule::unique('tu_tabla')->where(function ($query) {
-                    return $query->where('product_id', $this->product_id);
-                })
-            ],
-        ];
-    } */
-
-/*     public function rules(): array
-    {
-        $id = $this->route('id'); // Asumiendo que el ID del registro se pasa en la ruta
-
-        return [
-            'client_id' => [
-                'required',
-                \Illuminate\Validation\Rule::unique('tu_tabla')->where(function ($query) {
-                    return $query->where('product_id', $this->product_id);
-                })->ignore($id), // Ignora el registro actual
-            ],
-            'product_id' => 'required',
-            'price' => 'required',
-        ];
-    } */
 }
