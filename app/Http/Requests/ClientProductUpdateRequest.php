@@ -28,7 +28,7 @@ class ClientProductUpdateRequest extends FormRequest
                 return $query->where('product_id', $this->product_id);
             })->ignore($id)],
             'product_id' => 'required',
-            'price' => 'required',
+            'price' => 'required|integer|min:20|max:99999',
         ];
 
     }
