@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Client;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class ClientProductUpdateRequest extends FormRequest
 {
@@ -21,14 +24,23 @@ class ClientProductUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->id;
-
         return [
-            'client_id' => ['required', \Illuminate\Validation\Rule::unique('clients_products')->where(function ($query) {
-                return $query->where('product_id', $this->product_id);
-            })->ignore($id)],
+            'client_id' => [
+            'required',
+            function ($attribute, $value, $fail) {
+                $exists = DB::table('clients_products')
+                    ->where('client_id', $value)
+                    ->where('product_id', $this->input('product_id'))
+                    ->where('id', '!=', $this->route('clients_product')) // Replace 'id' with your route parameter name
+                    ->exists();
+
+                if ($exists) {
+                    $fail('The combination of client and product already exists.');
+                }
+            },
+            ],
             'product_id' => 'required',
-            'price' => 'required|integer|min:20|max:99999',
+            'price' => 'required|decimal:0,2|min:20|max:99999',
         ];
 
     }
