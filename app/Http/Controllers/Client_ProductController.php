@@ -13,6 +13,7 @@ use App\Exports\ClientsProductsExport;
 use App\Imports\ClientsProductsImport;
 use Illuminate\Support\Facades\Schema;
 use App\Http\Requests\ClientProductRequest;
+use App\Http\Requests\ClientProductUpdateRequest;
 
 class Client_ProductController extends Controller
 {
@@ -71,7 +72,7 @@ class Client_ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ClientProductUpdateRequest $request, string $id)
     {
         $client_product = ClientProduct::find($id);
         try{
