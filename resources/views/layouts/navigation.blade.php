@@ -13,22 +13,22 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                        {{ __('Clientes') }}
+                        {{ __('Clients') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                        {{ __('Productos') }}
+                        {{ __('Products') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sellers.index')" :active="request()->routeIs('sellers.index')">
-                        {{ __('Vendedores') }}
+                        {{ __('Sellers') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('clients.products.index')" :active="request()->routeIs('clients.products.index')">
-                        {{ __('Clientes y Productos') }}
+                        {{ __('Sales') }}
                     </x-nav-link>
                 </div>
                 @role('superAdmin')
@@ -91,16 +91,16 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                {{ __('Clientes') }}
+                {{ __('Clients') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                {{ __('Productos') }}
+                {{ __('Products') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('sellers.index')" :active="request()->routeIs('sellers.index')">
-                {{ __('Vendedores') }}
+                {{ __('Sellers') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('clients.products.index')" :active="request()->routeIs('clients.products.index')">
-                {{ __('Clientes y Productos') }}
+                {{ __('Sales') }}
             </x-responsive-nav-link>
             @role('superAdmin')
             <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
