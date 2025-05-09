@@ -24,26 +24,26 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                          <!-- head -->
-                          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                              <th scope="col" class="px-6 py-3"></th>
-                              <th scope="col" class="px-6 py-3">Name</th>
-                              <th scope="col" class="px-6 py-3">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach ($roles as $role)
-                                <tr class="hover:bg-base-300">
-                                    <td class="px-6 py-4"><div aria-label="success" class="status status-success"></div></td>
-                                    <td class="px-6 py-4">{{$role->name}}</td>
-                                    <td class="px-6 py-4">
-                                        <x-button :client="$role" :route="'admin.roles.edit'" color="blue">EDIT</x-button>
-                                        <x-delete-button :route="'admin.roles.destroy'" :object="$role">{{$role->name ?? "Corrige Esto"}}</x-delete-button>
-                                    </td>
+                        <!-- head -->
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3"></th>
+                                    <th scope="col" class="px-6 py-3">Name</th>
+                                    <th scope="col" class="px-6 py-3">Action</th>
                                 </tr>
-                            @endforeach
-                          </tbody>
+                            </thead>
+                            <tbody>
+                                @foreach ($roles as $role)
+                                    <tr class="hover:bg-base-300">
+                                        <td class="px-6 py-4"><div aria-label="success" class="status status-success"></div></td>
+                                        <td class="px-6 py-4">{{$role->name}}</td>
+                                        <td class="px-6 py-4">
+                                            <x-button :client="$role" :route="'admin.roles.edit'" color="blue">EDIT</x-button>
+                                            <x-delete-button :route="'admin.roles.destroy'" :object="$role">{{$role->name ?? "Corrige Esto"}}</x-delete-button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                 </div>
             </div>

@@ -15,16 +15,16 @@
                             @method('PUT')
 
                             <div class="mb-5">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                 <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rol" value="{{old('name', $role->name)}}" disabled/>
                                 @error('name')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{$message}}</p>
                                 @enderror
                             </div>
                             <div class="relative z-0 w-full mb-5 group">
-                                <label for="permissions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Permisos</label>
+                                <label for="permissions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Permissions</label>
                                 <select multiple id="permissions" name="permissions[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option disabled>Elije los permisos</option>
+                                    <option disabled>Choose permissions</option>
                                     @foreach ($permissions as $permission)
                                         <option value="{{ $permission->name }}" {{ in_array($permission->name, $role->permissions->pluck('name')->toArray()) ? 'selected' : '' }}>{{$permission->name}}</option>
                                     @endforeach
