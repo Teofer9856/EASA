@@ -5,7 +5,7 @@ Chart.defaults.font.family= "'Roboto', sans-serif";
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Clientes', 'Productos', 'Vendedores', 'Relacíon'],
+        labels: ['Clients', 'Products', 'Sellers', 'Sales'],
         datasets: [{
             label: 'Nº Last Month',
             data: JSON.parse(ctx.getAttribute('data-chart')),
