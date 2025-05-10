@@ -31,13 +31,6 @@
                         {{ __('Sales') }}
                     </x-nav-link>
                 </div>
-                @role('superAdmin')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
-                    </x-nav-link>
-                </div>
-                @endrole
             </div>
 
             <!-- Settings Dropdown -->
@@ -57,6 +50,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @role('superAdmin')
+                        <x-dropdown-link :href="route('admin.index')">
+                            {{ __('Admin') }}
+                        </x-dropdown-link>
+                        @endrole
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>

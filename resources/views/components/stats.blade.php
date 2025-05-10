@@ -1,6 +1,5 @@
 <div class="stats w-full mt-9 overflow-hidden">
-    {{-- * text-7xl 2xl:text-6xl --}}
-    <div class="stat place-items-center w-full hidden sm:block">
+    <div class="stat place-items-center w-full hidden md:block">
         <div class="stat-title text-2xl 2xl:text-xl">Products</div>
         <div class="stat-value text-5xl 2xl:text-4xl">{{ $stats[0] }}</div>
         <div class="stat-desc text-lg 2xl:text-base">{{ date('M d', strtotime('-1 month')) }} - {{ date('M d') }}</div>
