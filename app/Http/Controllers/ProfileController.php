@@ -32,6 +32,9 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+        if($request->user()->hasRole('superAdmin')){
+            return back()->with('status',  "Error you cannot change the email of the superAdmin");
+        }
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
@@ -47,7 +50,9 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
+        if($user->hasRole('superAdmin')){
+            return back()->with('status',  "Error you cannot delete the superAdmin");
+        }
         Auth::logout();
 
         $user->delete();

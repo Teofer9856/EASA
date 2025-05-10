@@ -20,6 +20,9 @@ class PasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
+        if($request->user()->hasRole('superAdmin')){
+            return back()->with('status',  "Error you cannot change the password of the superAdmin");
+        }
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
