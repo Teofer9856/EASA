@@ -50,7 +50,7 @@
                                         <div class="stat-value text-success text-8xl text-center">{{$mostSelledList['total']}}</div>
                                         <div class="stat-value text-success text-6xl text-center"><span class="text-success text-5xl">
                                             <div>
-                                                {{$mostSelledList['name']}}
+                                                {{implode(' ', array_slice(explode(' ', $mostSelledList['name']), 0, 3))}}
                                             </div>
                                             <div class="mt-3">
                                                 {{$mostSelledList['price']}} €
