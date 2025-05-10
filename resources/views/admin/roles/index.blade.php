@@ -11,7 +11,7 @@
             <x-button-icon :route="route('admin.roles.create')" class="mt-1"></x-button-icon>
             <div class="dropdown dropdown-hover">
                 <div tabindex="0" role="button" class="btn btn-outline btn-neutral m-1 border border-black">More Options</div>
-                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-35 p-2 shadow-sm">
                     <li><a href="{{ route('admin.roles.index') }}">Roles</a></li>
                     <li><a href="{{ route('admin.permissions.index') }}">Permisos</a></li>
                 </ul>
