@@ -19,11 +19,18 @@ class PermissionController extends Controller
     public function edit($id){
         $user = User::findOrFail($id);
         $permissions = Permission::all();
-        $roles = Role::all()->pluck('name')->toArray();
-        $userRoles = $user->getRoleNames()->toArray();
+        $roles = Role::whereNotIn('name', ['superAdmin'])->get();
+        $userRoles = $user->getRoleNames()->first();
         $userPermissions = $user->getAllPermissions()->pluck('name')->toArray();
 
-        return view('admin.permissions.edit', compact('user', 'permissions', 'roles', 'userRoles', 'userPermissions'));
+        $rolePermissions = [];
+        if ($userRoles) {
+            $role = Role::where('name', $userRoles)->first();
+            $rolePermissions = $role->permissions->pluck('name')->toArray();
+        }
+
+
+        return view('admin.permissions.edit', compact('user', 'permissions', 'roles', 'userRoles', 'userPermissions', 'rolePermissions'));
     }
 
     public function update(Request $request, $id){
@@ -31,6 +38,6 @@ class PermissionController extends Controller
         $user->syncRoles($request->input('roles'));
         $user->syncPermissions($request->input('permissions'));
 
-        return redirect()->route('admin.index')->with('status', 'Update User: Usuario actualizado correctamente');
+        return redirect()->route('admin.users.index')->with('status', 'Update User: Usuario actualizado correctamente');
     }
 }

@@ -51,7 +51,7 @@
 
                     <x-slot name="content">
                         @role('superAdmin')
-                        <x-dropdown-link :href="route('admin.index')">
+                        <x-dropdown-link :href="route('admin.users.index')">
                             {{ __('Admin') }}
                         </x-dropdown-link>
                         @endrole
@@ -101,7 +101,7 @@
                 {{ __('Sales') }}
             </x-responsive-nav-link>
             @role('superAdmin')
-            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+            <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                 {{ __('Admin') }}
             </x-responsive-nav-link>
             @endrole

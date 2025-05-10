@@ -15,8 +15,7 @@ class AdminController extends Controller
         return view('admin.index', compact('users'));
     }
 
-    public function destroy(Request $request){
-        $user = User::find($request->id);
+    public function destroy(User $user){
         $user->delete();
         return redirect()->back()->with('status', "Delete $user->name! deleted successfully");
     }

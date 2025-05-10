@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'role:superAdmin'])->name('admin.')->prefix('admin')->group(function(){
-    Route::resource('/', AdminController::class);
+    Route::resource('/users', AdminController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
 });

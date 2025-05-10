@@ -1,4 +1,4 @@
-<x-backButton :route="route('admin.index')"></x-backButton>
+<x-backButton :route="route('admin.users.index')"></x-backButton>
 <form class="max-w-md mx-auto" method="POST" action="{{route('admin.permissions.update', $client)}}">
     @csrf
     @method('PUT')
@@ -27,7 +27,7 @@
                     <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
                 </svg>
             </span>
-            <input type="email" id="email" name="email" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="world@champion.es" value="{{old('email', $client->email)}}" required />
+            <input type="email" id="email" name="email" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="world@champion.es" value="{{old('email', $client->email)}}" required disabled/>
         </div>
         @error('email')
             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{$message}}</p>
@@ -38,8 +38,12 @@
         <div class="relative z-0 w-full mb-5 group">
             <label for="roles" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roles</label>
             <select id="roles" name="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                @foreach ($roles as $role)
-                    <option value="{{ $role }}" {{ in_array($role, $userRole) ? 'selected' : '' }}>{{$role}}</option>
+                @foreach ($roles->pluck('name')->toArray() as $role)
+                    @if($userRole == $role)
+                        <option value="{{ $role }}" selected>{{$role}}</option>
+                    @else
+                        <option value="{{ $role }}">{{$role}}</option>
+                    @endif
                 @endforeach
             </select>
             @error('permissions')
@@ -50,10 +54,16 @@
         <div class="relative z-0 w-full mb-5 group">
             <label for="permissions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Permissions</label>
             <select multiple id="permissions" name="permissions[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option disabled>Choose Permissions</option>
-                @foreach ($permissions as $permission)
-                    <option value="{{ $permission->name }}" {{ in_array($permission->name, $userPermissions) ? 'selected' : '' }}>{{$permission->name}}</option>
-                @endforeach
+                <option></option>
+                    @foreach ($permissions as $permission)
+                        @php
+                            $isRolePermission = in_array($permission->name, $rolePermissions);
+                            $isUserPermission = in_array($permission->name, $userPermissions);
+                        @endphp
+                        <option value="{{ $permission->name }}" {{ $isRolePermission ? 'selected disabled' : ($isUserPermission ? 'selected' : '') }}>
+                            {{ $permission->name }}
+                        </option>
+                    @endforeach
             </select>
             @error('permissions')
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{$message}}</p>

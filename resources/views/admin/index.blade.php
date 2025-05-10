@@ -42,7 +42,7 @@
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->email }}</th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->roles[0]->name }}<td class="px-6 py-4">
                                             <x-permission-button color="yellow" :client="$user" route="admin.permissions.edit"></x-permission-button>
-                                            <x-delete-button :route="'admin.destroy'" :object="$user">{{$user->name ?? "Corrige Esto"}}</x-delete-button>
+                                            <x-delete-button :route="'admin.users.destroy'" :object="$user">{{$user->name ?? "Corrige Esto"}}</x-delete-button>
                                         </td>
                                     </tr>
                                 @endforeach
