@@ -30,17 +30,17 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex-grow p-6 overflow-auto bg-gray-100">
                         <div class="grid grid-cols-3 gap-6">
+                            <div class="h-50 bg-white border rounded-lg border-gray-300 col-span-3 2xl:col-span-1">
+                                <x-profits :profits="$profit"></x-profits>
+                            </div>
                             <div class="h-50 bg-white border rounded-lg border-gray-300 tooltip col-span-3 2xl:col-span-1">
                                 <span class="tooltiptext">Top Buyers</span>
                                 <x-buyers :buyers="$topThree"></x-buyers>
                             </div>
                             <div class="h-50 bg-white border rounded-lg border-gray-300 col-span-3 2xl:col-span-1">
-                                <x-profits :profits="$profit"></x-profits>
-                            </div>
-                            <div class="h-50 bg-white border rounded-lg border-gray-300 col-span-3 2xl:col-span-1">
                                 <x-stats :stats="$stats"></x-stats>
                             </div>
-                            <div class="h-95 bg-white border rounded-lg border-gray-300 col-span-3 2xl:col-span-2 ">
+                            <div class="h-95 bg-white border rounded-lg border-gray-300 col-span-3 2xl:col-span-2 hidden sm:block">
                                 <canvas id="myChart" data-chart="{{json_encode($data)}}"></canvas>
                             </div>
                             <div class="h-95 bg-white border rounded-lg border-black-300 col-span-3 2xl:col-span-1">
@@ -52,7 +52,7 @@
                                             <div>
                                                 {{implode(' ', array_slice(explode(' ', $mostSelledList['name']), 0, 3))}}
                                             </div>
-                                            <div class="mt-3">
+                                            <div class="mt-3 text-primary">
                                                 {{$mostSelledList['price']}} €
                                             </div>
                                     </div>

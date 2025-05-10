@@ -13,13 +13,13 @@
             @if ($key == 0)
                 <tr class="bg-base-200">
                     <th>{{$key += 1}}</th>
-                    <td>{{$buyer['name']}}</td>
+                    <td>{{ implode(' ', array_slice(explode(' ', $buyer['name']), 0, 2)) }}</td>
                     <td>{{$buyer['email']}}</td>
                 </tr>
             @else
             <tr>
                 <th>{{$key += 1}}</th>
-                    <td>{{$buyer['name']}}</td>
+                    <td>{{ implode(' ', array_slice(explode(' ', $buyer['name']), 0, 2)) }}</td>
                     <td>{{$buyer['email']}}</td>
             </tr>
             @endif
