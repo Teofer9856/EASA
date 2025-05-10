@@ -14,4 +14,10 @@ class AdminController extends Controller
         $users = User::select()->where('id', '>', 1)->get();
         return view('admin.index', compact('users'));
     }
+
+    public function destroy(Request $request){
+        $user = User::find($request->id);
+        $user->delete();
+        return redirect()->back()->with('status', "Delete $user->name! deleted successfully");
+    }
 }

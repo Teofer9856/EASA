@@ -44,7 +44,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request){
         Client::create($request->validated());
 
-        return redirect()->route('clients.index')->with('status', "Create client: $request->name! se ha creado correctamente");
+        return redirect()->route('clients.index')->with('status', "Create client: $request->name! created successfully");
     }
 
     public function edit(Client $client){
@@ -57,13 +57,13 @@ class ClientController extends Controller
     public function update(Client $client, UpdateClientRequest $request){
         $client->update($request->all());
 
-        return redirect()->route('clients.index')->with('status', "Update client: $client->name! se ha actualizado correctamente");
+        return redirect()->route('clients.index')->with('status', "Update client: $client->name! updated successfully");
     }
 
     public function destroy(Client $client){
         $client->delete();
 
-        return redirect()->back()->with('status', "Delete client: $client->name! se ha borrado exitosamente");
+        return redirect()->back()->with('status', "Delete client: $client->name! deleted successfully");
     }
 
     public function search(HttpRequest $request){

@@ -48,7 +48,7 @@ class ProductController extends Controller
     {
         Product::create($request->all());
 
-        return redirect()->route('products.index')->with('status', "Create product: $request->name! se ha creado correctamente");
+        return redirect()->route('products.index')->with('status', "Create product: $request->name! created successfully");
     }
 
     /**
@@ -66,7 +66,7 @@ class ProductController extends Controller
     {
         $product->update($request->all());
 
-        return redirect()->route('products.index')->with('status', "Update product: $product->name! se ha actualizado correctamente");
+        return redirect()->route('products.index')->with('status', "Update product: $product->name! updated successfully");
     }
 
     public function search(Request $request){
@@ -88,7 +88,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->back()->with('status', "Delete product: $product->name! se ha eliminado correctamente");
+        return redirect()->back()->with('status', "Delete product: $product->name! deleted successfully");
     }
 
     public function export(){

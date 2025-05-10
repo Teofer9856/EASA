@@ -78,10 +78,10 @@ class Client_ProductController extends Controller
         try{
             $client_product->update($request->all());
         } catch (Exception $e){
-            return redirect()->route('clients.products.index')->with('status', "Error (client-product): $client_product->id! no se puede duplicar el producto");
+            return redirect()->route('clients.products.index')->with('status', "Error (Sales): $client_product->id! can not be duplicated");
         }
 
-        return redirect()->route('clients.products.index')->with('status', "Update (client-product): $client_product->id! se ha actualizado correctamente");
+        return redirect()->route('clients.products.index')->with('status', "Update Sales: $client_product->id! updated successfully");
     }
 
     /**
@@ -91,7 +91,7 @@ class Client_ProductController extends Controller
     {
         ClientProduct::find($id)->delete();
 
-        return redirect()->back()->with('status', "Delete (client-product): $id! se ha eliminado exitosamente");
+        return redirect()->back()->with('status', "Delete Sales: $id! deleted successfully");
     }
 
     public function search(Request $request){
