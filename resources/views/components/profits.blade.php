@@ -2,7 +2,7 @@
     <div class="flex m-auto">
         <div>
             <div class="stat-title text-base">Total Month Sells</div>
-            <div class="stat-value text-primary text-7xl 2xl:text-6xl">{{number_format($profits['thisMonth'], 2, ',', '.')}}€</div>
+            <div class="stat-value text-primary text-5xl sm:text-6xl lg:text-7xl 2xl:text-6xl">{{number_format($profits['thisMonth'], 2, ',', '.')}}€</div>
             <div class="stat-desc text-sm">
                 @if (number_format(($profits['thisMonth']/($profits['lastMonth'] == 0 ? 1 : $profits['lastMonth']))-1, 2) > 0)
                     <div class="text-success flex">{{explode(".", number_format(($profits['thisMonth']/($profits['lastMonth'] == 0 ? 1 : $profits['lastMonth']))-1, 2))[1]}}%

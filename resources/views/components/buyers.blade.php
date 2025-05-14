@@ -3,8 +3,10 @@
         <!-- head -->
         <thead>
             <tr>
-                <th>Nº</th>
+                <th class="hidden sm:block">Nº</th>
                 <th>Name</th>
+                <th class="hidden md:table-cell 2xl:hidden">Province</th>
+                <th class="hidden lg:table-cell 2xl:hidden">Zip</th>
                 <th>Email</th>
             </tr>
         </thead>
@@ -12,16 +14,20 @@
             @foreach ($buyers as $key => $buyer)
             @if ($key == 0)
                 <tr class="bg-base-200">
-                    <th>{{$key += 1}}</th>
+                    <th class="hidden sm:block">{{$key += 1}}</th>
                     <td>{{ implode(' ', array_slice(explode(' ', $buyer['name']), 0, 2)) }}</td>
+                    <td class="hidden md:table-cell 2xl:hidden">{{$buyer->province->name}}</td>
+                    <td class="hidden lg:table-cell 2xl:hidden">{{$buyer['zip_code']}}</td>
                     <td>{{$buyer['email']}}</td>
                 </tr>
             @else
-            <tr>
-                <th>{{$key += 1}}</th>
+                <tr>
+                    <th class="hidden sm:block">{{$key += 1}}</th>
                     <td>{{ implode(' ', array_slice(explode(' ', $buyer['name']), 0, 2)) }}</td>
+                    <td class="hidden md:table-cell 2xl:hidden">{{$buyer->province->name}}</td>
+                    <td class="hidden lg:table-cell 2xl:hidden">{{$buyer['zip_code']}}</td>
                     <td>{{$buyer['email']}}</td>
-            </tr>
+                </tr>
             @endif
             @endforeach
         </tbody>
